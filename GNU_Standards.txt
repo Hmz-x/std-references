@@ -1,0 +1,65 @@
+Standards:
+Check every system call for an error return, unless you know you wish to ignore errors. Include the system error text (from strerror, or equivalent) in every error message resulting from a failing system call, as well as the name of the file if any and the name of the utility. Just “cannot open foo.c” or “stat failed” is not sufficient.
+program:sourcefile: ERR 
+
+Messages such as usage messages, should start with a capital letter. But they should not end with a period.
+
+Use getopt & getopt_long to decode arguments, unless the argument syntax makes this unreasonable.
+If you use names not already in the table, please send bug-standards@gnu.org a list of them, with their meanings, so we can update the table.
+
+All programs should support two standard options: ‘--version’ and ‘--help’. The standard --version option should direct the program to print information about its name, version, origin and legal status, all on standard output, and then exit successfully. Other options and arguments should be ignored once this is seen, and the program should not perform its normal function. 
+
+Version:
+Then should follow a copyright notice. Next should follow a line stating the license:
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Then add author.
+
+Help:
+The standard --help option should output brief documentation for how to invoke the program, on standard output, then exit successfully.
+Report bugs to: mailing-address
+pkg home page: <https://www.gnu.org/software/pkg/>
+General help using GNU software: <https://www.gnu.org/gethelp/>
+
+If a program typically uses just a few meg of memory, don’t bother making any effort to reduce memory usage.
+
+If you make temporary files, check the TMPDIR environment variable; if that variable is defined, use the specified directory instead of /tmp
+
+syntax:
+static char *
+concat (char *s1, char *s2)
+{
+  …
+}
+keep the length of source lines to 79 characters or less
+a = func (a, b, c); // notice the space
+if (true) { ... } // space!
+
+Commenting:
+Every program should start with a comment saying briefly what it is for. Example: ‘fmt - filter for simple filling of text’. This comment should be at the top of the source file containing the ‘main’ function of the program.
+
+Also, please write a brief comment at the start of each source file, with the file name and a line or two about the overall purpose of the file.
+
+Please put a comment on each function saying what the function does, what sorts of arguments it gets, and what the possible values of arguments mean and are used for.
+Also explain the significance of the return value, if there is one.
+
+Please put two spaces after the end of a sentence in your comments, so that the Emacs sentence commands will work. Also, please write complete sentences and capitalize the first word. If a lower-case identifier comes at the beginning of a sentence, don’t capitalize it! 
+
+The variable name itself should be lower case, but write it in upper case when you are speaking about the value rather than the variable itself. Thus, “the inode number NODE_NUM” rather than “an inode”.
+
+if (ptr == NULL)
+	fatal ("err msg");
+
+Check out err() errx()
+printf("Error: %s\n", strerror(errno));
+p = malloc(size);
+if (p == NULL)
+	err(EXIT_FAILURE, NULL);
+fd = open(file_name, O_RDONLY, 0);
+if (fd == -1)
+    err(EXIT_FAILURE, "%s", file_name);
+
+
+Naming:
+/* Ignore changes in horizontal whitespace (-b).  */
+int ignore_space_change_flag;

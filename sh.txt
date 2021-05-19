@@ -1,0 +1,90 @@
+Quick Notes:
+Use sh, which is usually linked to dash,
+for speed and minimalism.
+Use printf instead of echo.
+Redirect error messages to stderr.
+sh forces you to use UNIX utilities such as
+cut, paste, etc. unlike bash, which offers bloated built-in
+solutions.
+~ is not portable, use "$HOME" instead.
+Use mktemp to create temporary files.
+Subshell does NOT mean subprocess. i.e.:
+echo $$ && echo $(exec exec echo $$) && ( echo $$; ) && { echo $$; echo $(echo $$); }
+
+Test command exit status:
+if ! cmd > /dev/null; then
+	....
+fi
+
+Expansion operators:
+${varname:-word} : if varname not null return its value, if null
+return word
+
+Tests:
+[ ... && ... || ... ] # syntax error!
+[ ... -a ... -o ... ] # OK!
+[ ... ] && [ ... ] || [ ... ] # Best practice! 
+Note: Always quote variables!
+
+Case Statement:
+case $1 in
+-f) .... ;; 
+-a) .... ;; 
+-l) .... ;; 
+ *) .... >&2; exit 1;;
+esac
+Note: Very useful for shell pattern matching (not regex). 
+
+Pattern Matching Using For Loop:
+
+# executed such as ./script.sh '*' '[a-z]' '[A-Z]' '*.mp3'
+
+for pattern in "$@"; do
+	for file in "$dir/$pattern"; do # expands to /home/josh/* , /home/josh/[a-z] , ....
+		....
+	done
+done
+
+Pos-Params:
+shift: shift pos-params down by 1 ($# decreases by 1 each time)
+getopts: simplifies option processing
+Note: Use shift and a case statment to carry out instructions
+for each pos-param.
+
+Functions:
+func(){
+	...
+	echo "$result"
+	return $? # expilicitly return exit status (best practice)
+}
+
+If statements:
+if func arg1 arg2 > /dev/null # evaulate function's return value (0 = true)
+then
+: # ':' is the do nothing operator
+fi
+
+output="$(func arg1 arg2)" # get output of "$result"
+
+Command Syntax:
+IFS=: echo "$IFS" # IFS is assinged to be ':' for the following command
+# on the line, goes back to its regular form once next line is being
+# interpreted
+
+Configuration:
+Note: bash reads .bashrc when you start it interactively, but dash and ksh, among others, do not. 
+Instead you set the environment variable ENV to a filename that should be loaded when an interactive shell is started
+export ENV=~/.shrc in ~/.profile
+
+Eval:
+dir='my dir'
+my_opt='-l -s -a -v'
+eval ls "$my_opt" \"$dir\" # quotes need to be escaped since whitespace involved
+
+POSIX Compliance:
+Use 'shellcheck' to confirm compliance.
+'which' is not POSIX compliant. Use 'command -v' instead.
+See: XDG Base Directory specification
+
+Resources:
+https://pubs.opengroup.org/onlinepubs/9699919799/
