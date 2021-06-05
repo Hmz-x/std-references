@@ -86,5 +86,21 @@ Use 'shellcheck' to confirm compliance.
 'which' is not POSIX compliant. Use 'command -v' instead.
 See: XDG Base Directory specification
 
+Best practice:
+Production scripts should have the following options.
+-q|--quiet
+-s|--no-messages
+-h|--help
+-v|--version
+-- (breaks from parsing options)
+And the following functions:
+show_help
+show_version
+error
+warning
+
+The following prevents the variable being confused as an option if it starts with a hyphen.
+[ "X$var" = "Xabc" ] && ...
+
 Resources:
 https://pubs.opengroup.org/onlinepubs/9699919799/
