@@ -1,0 +1,21 @@
+- C++ is a superset of C
+- C++ was developed by Stroustrup.
+- The Standard Template Library (STL) provides constructs that address common programming data structures and files.
+
+4 Programming trade offs that C++ finds a middle ground in:
+- Performance
+- Development time
+- Executable size
+- Portability
+
+Executable Flow:
+0. Source code
+1. Preprocessor
+- Reads # directives 
+- Produces processed files by combining source and header files
+2. Compiler
+- Works on single files
+- Produces object file
+3. Linker
+- Links together multiple object files and library files
+- Produces an executable

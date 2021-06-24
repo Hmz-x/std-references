@@ -1,0 +1,22 @@
+creating a namespace:
+namespace myNameSpace
+{
+	int someIdentifier;
+}
+
+Types in C++ are stored numerically:
+- Integrals: short,int, long, long long, bool, char, wchar_t, ...
+- Floating Point: float, double, long double
+
+<climits> defines the max and min for data types.
+
+cout allows "serial" operation:
+cout << "Hello"  << " World";
+cout << "Hello"  << " World" << endl << endl;
+
+cin reads input values:
+cin >> myVar;
+
+cout << "You are "
+	 << myVar
+	 << " years old" << endl; 

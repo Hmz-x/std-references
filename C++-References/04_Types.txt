@@ -1,0 +1,33 @@
+auto x = 10;
+auto y = 3.4f; // declares y to be float, if left out would've been declared double
+
+The string class is a part of the STL.
+
+#include <string>
+...
+string s = "abcd";
+string s2 = s; // does NOT create a pointer to string s
+
+A stream can be tought of pipes which data flows through. It is a buffer.
+Items entering the stream will be buffered until removed/extracted.
+cin.ignore(n) will remove n characters from the stream.
+
+get() - can get one or more chars from the stream
+getline() - gets a line 
+
+get line C++ way:
+string s;
+getline (cin, s); 
+
+get line C way:
+char s[20];
+cin.getline (s, 20);
+
+Global vs local variable:
+int a;
+void main ()
+{
+	a = 10; // assigns 10 to global a
+	int a; // defines local a
+	cin >> ::a; // reads value and assigns it to local a, indicated by the '::a' 
+}

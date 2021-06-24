@@ -1,0 +1,20 @@
+iostream is the standard C++ library.
+
+cin and cout are used as I/O objects
+
+'sdd::...' indicates the standard namespace.
+A::B = B belongs to A
+
+#include <iostream>
+using namespace std; // Creates scope
+
+int
+main()
+{
+	cout << "Hello World" << endl;
+	
+	// Use the following when not using std namespace:	
+	// std::cout << "Hello World" << std::endl;
+	return 0;
+}
+
