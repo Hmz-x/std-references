@@ -31,3 +31,21 @@ void main ()
 	int a; // defines local a
 	cin >> ::a; // reads value and assigns it to local a, indicated by the '::a' 
 }
+
+The scope resolution operator, '::', has the highest precedence.
+
+x = y = 6; // assign y to be 6, assign y to x 
+
+ternary operator:
+string res;
+res = a > 3 ? "true" : "false";
+
+float m = 4.3; // assigns the double 4.3 to type float implicity
+float m = 4.3f; // assigns the float 4.3 to type float 
+
+do NOT use C style casting, use instead:
+int x = static_cast<int> (3.14592); // truncates data
+
+Also do NOT use C header files
+don't: #include <time.h>
+do: #include <ctime>
