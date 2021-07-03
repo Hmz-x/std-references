@@ -1,0 +1,24 @@
+A vector<T> is a member of the STL. It creates a list of items of type T, which can grow and shrink as needed.
+It is a class, not an intristic construct of C++.
+
+Initialize:
+vector<int> v; // empty
+vector<int> v (10); // start with 10 elements
+vector<int> v = {1, 2, 3}; // initialize with values
+
+Access an element:
+v[3] = 10;
+
+Get size:
+v.size()
+
+Iteration for loop:
+for (Item myItem : myItemList)
+	std << myItem << endl;
+
+the auto keyword determines the data-type of the variables:
+auto i = 100; // i is determined to be an integer
+
+Partial initializer list:
+int arr[3] = {1, 2}; // Elements are 1, 2, 0
+int arr[3] = {}; // Elements are 0, 0, 0

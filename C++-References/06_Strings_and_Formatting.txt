@@ -1,0 +1,43 @@
+Assignment:
+str = "lol";
+
+Get size:
+str.size()
+
+Check if empty:
+if (str.empty()) ...
+
+Concatenate:
+str = "test" + "123";
+
+The string class is less time-consuming then manipulating pointers to char however it also slightly less efficient.
+
+Set column width:
+cout.width (10);
+
+Set precision (number of digits for output):
+cout.precision (2);
+
+Set filler character for blank space:
+cout.fill('-');
+
+There are several manipulators that can be inserted in the stream which remain in effect until changed.
+dec, hex, oct -> change the number base
+boolalpha -> display bool as true or false
+endl -> output newline character
+
+
+#include <iomanip>
+...
+cout << dec << myNumber << endl;
+cout << hex << myNumber << endl;
+cout << oct << myNumber << endl;
+
+Manipulator functions:
+#include <iomanip>
+...
+cout << setw (10) << myString; // set output width
+Some functions: setw(), setfill(), setprecision(), setbase(), justification()
+
+IOS flags:
+cout << setiosflags (ios::dec) << myNumber;
