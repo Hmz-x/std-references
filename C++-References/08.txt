@@ -1,0 +1,14 @@
+Creating references:
+A reference is like an alias. It is not a pointer.
+A '&' in the lvalue indicates reference.
+
+int &bob = bobby;
+
+The reference and the variable it references have the same value and address.
+
+int mehmet = 10;
+int &memo = mehmet; // memo belongs to data type "int &"
+cout << mehment << " " << memo << endl; // 10 10
+
+memo = 20;
+cout << mehment << " " << memo << endl; // 20 20

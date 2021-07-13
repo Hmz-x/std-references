@@ -1,0 +1,41 @@
+Arrays are passed by reference to functions (including in C). Functions that change the value of the elements in the array affect the 
+whole program.
+
+Default function parameters:
+void myFunc (int a = 10, int b = 123, c = 31)
+{
+	...
+}
+
+int main ()
+{
+	myFunc (12, 42, 43); // overrides all default values
+	myFunc (12, 42); // overrides first two default values
+	myFunc (12); // overrides first default value
+	myFunc (); // overrides none of the default value
+
+	myFunc (12, ,43); // Illegal!
+} 
+
+Note: in the function declaration, the default value parameters should come after the non-default parameters 
+
+initializer_list<t> enables a function to accept a variable number of arguments:
+#include <initializer_list>
+
+void func (initializer_list<int> args)
+{
+	vector<int> argsv = args; // copy the data on to the vector
+	for (int i = 0; i < argsv.size(); i++)
+		...	
+} 
+
+int main ()
+{
+	func ({1, 2, 3, 10, 12, 214, 543});
+}
+
+
+Inline functions: 
+inline doubleIt (int x) { return 2 * (x); } // doesn't go onto function stack thus uses more memory
+Macro functions:
+#define DOUBLEIT (x)	2 * (x) // substitutes the DOUBLEIT (x) with 2 * (x)
