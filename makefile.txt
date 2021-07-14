@@ -1,0 +1,51 @@
+Popular C/C++ alternative build systems are SCons, CMake, Bazel, and Ninja. 
+
+A Makefile consists of a set of rules. A rule generally looks like this:
+targets: prerequisites
+	command
+	command
+	command
+
+- The targets are file names, separated by spaces. Typically, there is only one per rule.
+- The commands are a series of steps typically used to make the target(s). These need to start with a tab character, not spaces.
+- The prerequisites are also file names, separated by spaces. These files need to exist before the commands for the target are run. These are 
+also called dependencies
+
+
+Example 1:
+blah: blah.o
+	cc blah.o -o blah # Runs third: creates executable 'blah'
+
+blah.o: blah.c
+	cc -c blah.c -o blah.o # Runs second: creates object file 'blah.o'
+
+blah.c:
+	echo "int main() { return 0; }" > blah.c # Runs first: creates main.c
+
+
+clean is often used as a target that removes the output of other targets, but it is not a special word in make.
+some_file: 
+	touch some_file
+
+clean:
+	rm -f some_file
+
+
+To use the makefile, place the instructions in a file called "makefile" in the project directory and run `make`. 
+Run the given commands by passing `make` the target name as a parameter, e.g. `make clean`. The option `-s` or `--silent` tells `make` not
+to echo the commands being run.
+
+Variables can only be strings. Here's an example of using them:
+files = file1 file2
+some_file: $(files)
+	echo "Look at this variable: " $(files)
+	touch some_file
+file1:
+	touch file1
+file2:
+	touch file2
+
+clean:
+	rm -f file1 file2 some_file
+
+Reference variables using ${} or $(). 
