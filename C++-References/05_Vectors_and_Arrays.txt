@@ -10,11 +10,20 @@ Access an element:
 v[3] = 10;
 
 Get size:
-v.size()
+v.size ()
+
+Append element:
+v.push_back (myInt);
+
+Delete last element:
+v.pop_back ();
 
 Iteration for loop:
 for (Item myItem : myItemList)
-	std << myItem << endl;
+	cout << myItem << endl;
+for (char ch : str)
+	cout << ch << str;	
+Note: The last iteration ch is assigned '\0'
 
 the auto keyword determines the data-type of the variables:
 auto i = 100; // i is determined to be an integer

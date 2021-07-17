@@ -12,3 +12,14 @@ cout << mehment << " " << memo << endl; // 10 10
 
 memo = 20;
 cout << mehment << " " << memo << endl; // 20 20
+
+Constant references:
+i.e.: void func (const int &i, const int &j);
+Constant references are used when copying data is not efficient enough. i.e.:
+int getSum (const vector<int> &v)
+{
+	int sum = 0;
+	for (int n : v)
+		sum += n;
+	return sum;	  
+}

@@ -10,6 +10,13 @@ if (str.empty()) ...
 Concatenate:
 str = "test" + "123";
 
+string s1 (s2); // initialize string s1 with string s2
+string s1 (charArr); // initialize string s1 with character array charArr
+string s1 (charArr, 4); // initialize string s1 with the first 4 characters of the character array charArr
+
+s1 > s2 // alphabetically greater than
+s1 < s2 // alphabetically less than
+
 The string class is less time-consuming then manipulating pointers to char however it also slightly less efficient.
 
 Set column width:

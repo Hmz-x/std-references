@@ -1,0 +1,37 @@
+- A container is an object that stores a group of items.
+- A template allows for data types to remain unresolved until run-time.
+- The only difference between a class and a struct is that struct has all of its members public by default.
+
+Defining a class:
+enum EyeColor {BLACK, BROWN, GREEN, BLUE};
+class User
+{
+	public:
+		string name;
+		EyeColor userEyeColor;
+		int age;
+};
+
+Creating an instance:
+// method 1
+User jim;
+jim.name = "Jim";
+jim.EyeColor = BLUE;
+jim.age = 23;
+
+// method 2
+User jim = {"Jim", BLUE, 23};
+
+Array of objects:
+User allUsers[]
+{
+	jim,
+	jane,
+	{"Bob", BROWN, 21}	
+};
+
+cout << allUsers[0].name << endl;
+
+Pointer to an object:
+User * userPtr = &jim;
+jim->age = 43;
