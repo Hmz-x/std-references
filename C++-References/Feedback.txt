@@ -1,0 +1,22 @@
+PS3:
+Great job! Problem 1: The dollar formatted amount the dollar sign ought to have been placed in the returned string. Overall: As a general
+rule of thumb, you should have 1 header file per cpp file.
+
+GP3:
+Great job! Well thought out solution; the program does not display repeat letters in the letter board, and the program checks for incorrect
+number of letters entered and asks the user to try again. Great job catching those edge cases. One small bug: If the word is yucca, and I
+type in yuuca, the score is 5, but since I didn't get the letters all right, the score should not be 5, but 4.
+
+PS2:
+Well done. Problem 2: Your program does not have it as 2 decimal places after the dot. To solve this problem, you can use fixed.
+
+GP2:
+Your program does not account for repeated letters, meaning the user could enter a wrong letter and get one incorrect guess, then they could
+enter that same wrong letter again and get another incorrect guess, which you want to avoid. Good modularity.
+
+PS1:
+Well done. The code was very clear and easy to read.  Problem 3: Since the prices of items don't change, instead of using literals (a
+number) use constants (const). Also, please leave a block comment above each function in the future.  Fantastic job!
+
+GP1:
+Well done. Your code is very clear and concise, and both of the games work well. Please put a block comment above each function.
