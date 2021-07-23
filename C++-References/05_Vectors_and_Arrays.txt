@@ -3,7 +3,7 @@ It is a class, not an intristic construct of C++.
 
 Initialize:
 vector<int> v; // empty
-vector<int> v (10); // start with 10 elements
+vector<int> v (SIZE); // start with 10 elements, appended elements will indexed at SIZE + n
 vector<int> v = {1, 2, 3}; // initialize with values
 
 Access an element:
@@ -17,6 +17,9 @@ v.push_back (myInt);
 
 Delete last element:
 v.pop_back ();
+
+Remove an element:
+v.erease (v.begin() + INDEX);
 
 Iteration for loop:
 for (Item myItem : myItemList)

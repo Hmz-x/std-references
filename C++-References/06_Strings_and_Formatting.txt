@@ -48,3 +48,6 @@ Some functions: setw(), setfill(), setprecision(), setbase(), justification()
 
 IOS flags:
 cout << setiosflags (ios::dec) << myNumber;
+
+Null byte:
+0 is '\0' in ascii. 
