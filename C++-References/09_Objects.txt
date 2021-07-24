@@ -35,3 +35,36 @@ cout << allUsers[0].name << endl;
 Pointer to an object:
 User * userPtr = &jim;
 jim->age = 43;
+
+Functions within classes:
+class Ball
+{
+	public:
+		double diameter;
+		string color;
+	
+	double getDiameter ()
+	{
+		return diameter;
+	}
+};
+
+Class functions:
+class Ball
+{
+	public:
+		....
+	
+	double getDiameter ();	
+	string getColor ();
+}
+
+double Ball::getDiameter ()
+{
+	return diameter;
+}
+
+string Ball::getColor ()
+{
+	return color;
+}
