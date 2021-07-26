@@ -1,3 +1,4 @@
+Class members should be named: m_<member name>
 PS3:
 Great job! Problem 1: The dollar formatted amount the dollar sign ought to have been placed in the returned string. Overall: As a general
 rule of thumb, you should have 1 header file per cpp file.

@@ -10,6 +10,7 @@ class User
 		string name;
 		EyeColor userEyeColor;
 		int age;
+		int favoriteNumber = 231; // BAD PRACTICE!!! Don't initialize.
 };
 
 Creating an instance:
@@ -68,3 +69,80 @@ string Ball::getColor ()
 {
 	return color;
 }
+
+All class members are in scope within any method function of the class.
+
+void Date::display ()
+{
+	cout << this->m_month << endl; // 'this' is a pointer to the current class instance that's used to indicate class members
+}
+
+Constructors:
+class Date
+{
+	Date () // inline defined constructor
+	{
+		m_month = 1;
+		m_day = 1;
+	}
+	Date (int day); // overloaded constructor defined externally
+}
+
+Date::Date (int day)
+{
+	m_month = 1;
+	m_day = day;
+}
+
+Initializing a class instance:
+Date d; // constructor is called implicitly
+// OR
+Date d (10, 21); // arguments are passed to the constructor
+
+Note: A default constructor has no parameters.
+
+Initializing members in the constructor:
+Date::Date (): m_month (month) m_day (day), m_year (year) {} 
+Note: Order of the class members must be the same as the order of defenition in the class
+
+Copy constructors:
+
+class Date
+{
+	public:
+		int m_day;
+		int m_month;
+		Date (); // default constructor
+		Date (const Date & d); // copy constructor
+		void display ();	
+}
+
+Date::Date () // default constructor
+{
+	this->m_day = 1;
+	this->m_month = 1;
+}
+
+Date::Date (const Date & d) // copy constructor
+{
+	this->m_day = d.m_day;
+	this->m_month = d.m_month;
+}
+
+void Date::display ()
+{
+	cout << this->m_month << "/" << this->m_day << endl;
+}
+
+int main ()
+{
+	Date a; // initialized with default constructor
+	Date b (a); // initalized with copy constructor
+}
+
+Data hiding is achieved by using the keyword private.
+Friend functions and classes have access to private memebers of another class.
+...
+	public:
+		friend class anotherClass ();
+		friend void friendFunction (MyClass &obj);

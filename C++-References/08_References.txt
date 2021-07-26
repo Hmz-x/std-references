@@ -23,3 +23,20 @@ int getSum (const vector<int> &v)
 		sum += n;
 	return sum;	  
 }
+
+Return by Reference:
+int &foo (int arr[])
+	return arr[0];
+
+// in main:
+	int arr[4];
+	foo (arr) = 10; // The function call is now lvalue
+
+Another example:
+int &safeArrayAssign (int arr[], int index, const int ARR_SIZE)
+{
+	if (index >= ARR_SIZE)
+		index = ARR_SIZE - 1;
+
+	return arr[index];
+}
