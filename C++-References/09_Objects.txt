@@ -115,6 +115,7 @@ class Date
 		Date (); // default constructor
 		Date (const Date & d); // copy constructor
 		void display ();	
+		void func () const; // const method that can be called on a const object
 }
 
 Date::Date () // default constructor
@@ -146,3 +147,17 @@ Friend functions and classes have access to private memebers of another class.
 	public:
 		friend class anotherClass ();
 		friend void friendFunction (MyClass &obj);
+
+Dynamically allocating memory for an object:
+Date * d = new Date;
+Date * d = new Date ();
+Date * d = new Date (1, 1);
+
+Initializing arrays of classes:
+Person employees[2]; // Uses default constructor
+Person employees[3] = { // Calls multi-parameter constructor
+	Person ("Bob", 4, 52);
+	Person ("asd", 5, 2);
+	...
+}
+Person employee = "Betty"; // Calls one-parameter constructor
