@@ -1,0 +1,15 @@
+"Traditional" error processing: detection and servicing the error is together.
+Structered Exception Handling seperates error detection from handling the error.
+
+try
+{
+	int * ptr = new int;
+}
+catch (bad_alloc) // catches bad_alloc error
+{
+	cout << "Alloc. error.";
+}
+catch (...) // catches all errors
+{
+	cout << "Caught error.";
+}

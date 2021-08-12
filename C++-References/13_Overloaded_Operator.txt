@@ -1,0 +1,16 @@
+int operator * (Person &p, int age)
+{
+	p.setAge (age);
+	return age;
+} 
+
+ostream & operator << (ostream & out, const Person & p)
+{
+	out << p.m_name << " " << p.m_age << endl;
+	return out;
+}
+
+...
+Person p1 ("Jack");
+p1 * 30; // use overloaded * operator
+cout << pete << endl; // use overloaded << operator

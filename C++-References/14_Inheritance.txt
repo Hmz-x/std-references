@@ -1,0 +1,8 @@
+Inheritance:
+The base class is a generalization.
+The child class is a specilization.
+
+Unlike most other languages, C++ does support multi-inheritance (1 child and multi. parents).
+
+class A { ... };
+class B: public A { ... }; // Declares class B to the child of class A

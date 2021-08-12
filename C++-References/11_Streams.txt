@@ -1,0 +1,36 @@
+Using a string as a stream:
+// >>: read from stream, <<: write to stream
+ostringstream s1;
+s1 << stuff;
+
+Files:
+Opening a file:
+#include <fstream>
+...
+ifstream inFile ("file.txt"); // open for reading
+ofstream outFile ("file.txt"); // open for writing
+// OR
+ifsfream inFile; 
+inFile.open ("file.txt"); 
+inFile.open ("file.txt", ios::out | ios::trunc); // open file with modes
+
+Checking for errors:
+if (inFile.fail ())
+	cout << "Failed to open file\n";
+
+Close file:
+inFile.close ();
+
+Get characters from a file:
+char c;
+ifstream inFile ("file.txt"); 
+while (!inFile.eof ())
+	inFile.get (c);
+
+Unformatted output:
+cout.put ('A');
+
+Write to file:
+outFile << "Lmao test123";
+
+Read lines

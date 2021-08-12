@@ -1,0 +1,33 @@
+Iterate through int array using a pointer:
+const int ARR_SIZE = 10;	
+int arr[ARR_SIZE] = {10, 29, 391, ....};
+for (int * ptr = arr; ptr < (arr + ARR_SIZE); ptr++)
+{
+	cout << *ptr << endl;	
+}
+
+Iterate through char array using a pointer:
+char arr[] = "LMAO hahah waht!!!";
+for (char * ptr = arr; *ptr; ptr++)
+	cout << *ptr << endl;
+
+Memory allocation:
+int * ptr = new int; // allocate mem.
+if (!ptr)
+	cout << "Error" << endl;
+
+*(ptr) = 10; // access
+
+delete ptr; // deallocate mem.
+ptr = nullptr; // point it to no address
+
+
+int * arrPtr = new int[ARR_SIZE]; // allocate
+assert (arrPtr); // error exit if arrPtr == nullptr
+arrPtr[i] = i * 21; // access
+delete[] arrPtr; // deallocate
+arrPtr = nullptr; // point it to no address
+
+The 'new' keyword:
+'new' will automatically allocate enough space based on the data type.
+Use '[]' with 'new' to specify multiple objects.
