@@ -1,3 +1,0 @@
-The Arch User Repository (AUR) is a community-driven repository for Arch 
-users. It contains package descriptions (PKGBUILDs) that allow you to 
-compile a package from source with makepkg and then install it via pacman.
