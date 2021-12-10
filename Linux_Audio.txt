@@ -1,0 +1,19 @@
+Soundcards:
+A soundcard converts digital signal into an analog signal, which then travels through the 
+speakers or headphones. It converts analog signal from a mic to digital for it to be then 
+processes by the OS. 
+
+Drivers:
+Drivers such as OSS and ALSA are used to interact with soundcards. ALSA supports USB soundcards,
+PCI soundcards, and onboard audio. Many applications support working with ALSA directly, though
+that is often not the case due to sound servers. ALSA by itself is unable to multiplex, turn
+multiple inputs into a single output, properly.
+
+Sound servers:
+Sound servers such as JACK and PulseAudio are the bridge between the client program and the sound
+driver. The audio mixing is done by the sound servers.
+
+Program (client) -> Pulseaudio (server) -> ALSA (driver) -> sound card (hardware)
+
+JACK supports MIDI and is way more flexible than Pulseaudio, though more complex as well.
+Pipewire seeks to become a replacement for both JACK and ALSA.
