@@ -1,0 +1,20 @@
+Done:
+- Artix installed, git installed
+- Dotfiles set up 
+- Wireless connection set up using nmcli
+- Aliased 'po' to loginctl poweroff
+- Fixed error cmus message, disabled MPRIS in config
+- Completeed CLI torrent set up, wrote tool-reference, added functions to .bashrc
+- Recieved github PAT and pasted it in the password field when prompted.
+- Installed system/man-pages for function man pages 
+- Installed aspell and aspell-en for autocorrection
+- Installed pulseaudio, pulseaudio-alsa, pavucontrol. Added `pulseaudio -D` to .xinitrc. set
+  output_plugin in cmus rc to pulse.
+- Added pamixer and cmus controls to sxhkdrc
+
+TODO:
+
+- Set an shutdown keybinding
+- Change tmux prefix
+- Automatically start programs after login
+- Incorparete beep to program keybindings
