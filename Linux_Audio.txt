@@ -10,10 +10,23 @@ that is often not the case due to sound servers. ALSA by itself is unable to mul
 multiple inputs into a single output, properly.
 
 Sound servers:
-Sound servers such as JACK and PulseAudio are the bridge between the client program and the sound
-driver. The audio mixing is done by the sound servers.
+Sound servers such as JACK and PulseAudio are the bridge between the client program and the
+sound driver. The audio mixing is done by the sound servers.
 
 Program (client) -> Pulseaudio (server) -> ALSA (driver) -> sound card (hardware)
 
 JACK supports MIDI and is way more flexible than Pulseaudio, though more complex as well.
-Pipewire seeks to become a replacement for both JACK and ALSA.
+Pipewire seeks to become a replacement for both JACK and ALSA. JACK should be used when 
+audio work such as mixing, producing, or recording is done. Pulseaudio should be used when
+regular computing such as watching videos, listening to music, etc. is done.
+
+Pulseaudio:
+Pulseaudio doesn't need much configuration. Simply start the daemon with `pulseaudio -D'
+on startup, kill it when neccessary with `pulseaudio -k`. See the logs with `sudo pulseaudio
+-v`. `pamixer` is great CLI tool and `pavucontrol` is a great GUI tool for twearking 
+pulseaudio controls. 
+
+JACK:
+JACK usually requires more attention and configuration then pulseaudio. Before starting the
+JACK server with `qjackctl`, a GUI JACK controller, kill all audio applications and the 
+pulseaudio daemon.

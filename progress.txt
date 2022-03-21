@@ -16,5 +16,5 @@ TODO:
 
 - Set an shutdown keybinding
 - Change tmux prefix
-- Automatically start programs after login
+- Automatically start programs after login See: bspc monitor
 - Incorparete beep to program keybindings

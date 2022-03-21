@@ -1,0 +1,18 @@
+There were 3 types of grep:
+grep - original
+egrep - Extended grep which uses Extended Regex
+fgrep - fast grep
+The three versions were merged together in 1992.
+
+Classes:
+[:alnum:] [:alpha:] [:lower:] ...
+
+Match any char. within the given range:
+[a-z] [0-9] [A-Z] ...
+
+Match any char. NOT within the given range:
+[!a-z] [!0-9] [!A-Z] ...
+
+Collating (Multi-Char.) elements:
+[.ch.] [.sh.] [.sch.] ...
+
