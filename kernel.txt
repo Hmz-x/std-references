@@ -1,0 +1,61 @@
+KVM, Kernel-based Virtual Machine, is a hypervisor built into the Linux kernel.
+Unlike native QEMU, which uses emulation, KVM is a special operating mode of
+QEMU that uses CPU extensions (Hardware-assisted virtualization) for
+virtualization via a kernel module. 
+
+QEMU is a generic and open source machine emulator and virtualizer. When used
+as a machine emulator, QEMU can run OSes and programs made for one machine
+(e.g. an ARM board) on a different machine (e.g. your x86 PC). By using dynamic
+translation, it achieves very good performance. 
+
+Libvirt is a collection of software that provides a convenient way to manage
+virtual machines and other virtualization functionality, such as storage and
+network interface management. These software pieces include a long term stable
+C API, a daemon (libvirtd), and a command line utility (virsh). A primary goal
+of libvirt is to provide a single way to manage multiple different
+virtualization providers/hypervisors, such as the KVM/QEMU, Xen, LXC, OpenVZ or
+VirtualBox hypervisors (among others). 
+
+lscpu | grep Virtualization # check for virtualization support (VT-x for Intel
+processors and AMD-V for AMD processors)
+
+lsmod | grep kvm # check that kvm modules are loaded.
+
+Para-virtualization allows virtual machines (guests) to communicate quickly and
+efficiently with devices on the host machine. KVM uses para-virtualization by
+offering virtual machines special devices through the Virtio API, which acts as
+a bridge between the hypervisor (software that creates and runs virtual
+machines) and the guest. Each Virtio device consists of two parts: a host
+device and a guest driver. The host device is on the physical machine, and the
+guest driver is in the virtual machine.
+
+Load the following modules via modprobe ('modprobe -a' to load multiple):
+network device (virtio-net)
+block device (virtio-blk)
+controller device (virtio-scsi)
+serial device (virtio-serial)
+balloon device (virtio-balloon)
+
+modprobe -r module_name # unload module
+
+ls -l /lib/modules/$(uname -r)/kernel/drivers/ # view drivers
+
+/lib/modules/ is a directory on a Linux system that contains kernel modules.
+Kernel modules are pieces of code that can be loaded and unloaded into the
+kernel as needed, without requiring a reboot. They extend the functionality of
+the kernel, typically to add support for new hardware or filesystems.
+
+files in /etc/modules-load.d/ (i.e. my-modules.conf) contain module names to be
+loaded automatically at boot time. Whereas /etc/modprobe.d/ configures module
+options, aliases, and blacklists..
+
+vmlinuz is the name of the compressed Linux kernel executable used for booting
+the operating system. The name vmlinuz stands for "Virtual Memory LINUx gZip"
+because it is a compressed kernel image that is used to start the Linux
+operating system.
+
+After updating the kernel or installing new modules, running depmod ensures
+that the new module dependencies are correctly identified and recorded. This is
+especially important when new modules are added or existing ones are updated.
+
+modprobe MODULE # where module can be typed out as virtio-net or virtio_net
