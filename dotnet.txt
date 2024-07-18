@@ -1,0 +1,6 @@
+.NET Core is an open-source, cross-platform framework for building modern, 
+cloud-based, internet-connected applications. It is a modular, high-performance,
+and scalable platform that supports various application types, including web, 
+mobile, desktop, gaming, IoT, and AI.
+
+
