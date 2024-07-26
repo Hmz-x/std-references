@@ -1,0 +1,74 @@
+su - # requires root passwd
+sudo -i # requires privileged user passwd (thus deemed more secure)
+
+/var/log/secure: security events log in RHEL
+
+Historically, a console referred to a physical device that was the primary
+input/output interface for a computer system. This often included a keyboard
+and a display screen or a teletype machine. In modern systems, the console
+often refers to the system console or system terminal. It's the primary
+interface for system administrators to interact with the system, especially in
+situations where the graphical user interface (GUI) isn't available. For
+example, during system boot or in recovery mode.
+
+Virtual terminals allow you to open six different terminal windows from the
+same console at the same time and use key sequences Alt+F1-F6 (in a
+non-graphical env) to navigate between them. In a graphical env, use key
+sequences Ctrl+Alt+F1-F6.
+`chvt N` (change virtual terminal) cmd offers same thing.
+
+-F1: Gives access to the GNOME Display Manager (GDM) graphical login
+-F2: Provides access to the current graphical console
+-F3: Gives access back to the current graphical session
+-F4–F6: Gives access to nongraphical consoles
+
+virtual console tty's have corresponding device files /dev/ttyN where N is
+1-6.
+
+For terminal windows that are started from a graphical environment, pseudo termi-
+nals are started. These pseudo terminals are referred to using numbers in the
+/dev/pts directory. So, the first terminal window that is started from a graphical
+environment appears as /dev/pts/1, the second terminal window appears as
+/dev/pts/2.
+On earlier versions of Linux, pseudo terminals were seen as pty devices.
+These types of terminals are now deprecated and replaced with the pts terminal
+types
+
+`w` cmd shows who is logged in and what they are doing. Will show
+the terminal device logged in from (i.e. pts/0 or tty1)
+
+There are some scenarios, though, in which even experienced Linux administrators have to reboot:
+-To recover from serious problems such as server hangs and kernel panics
+-To apply kernel updates
+-To apply changes to kernel modules that are being used currently and there-
+fore cannot be reloaded easily
+
+Note: the Linux kernel can be updated without rebooting using a technique called live patching. This can be particularly useful for applying security patches or critical bug fixes in environments where uptime is crucial.
+
+The Linux kernel is primarily considered a monolithic kernel. A monolithic kernel is a type of operating system kernel where the entire operating system, including device drivers, file system management, and core services like process and memory management, runs in kernel space. This design contrasts with microkernels, where the kernel provides minimal services and most other functionalities are implemented in user space.
+
+The Systemd
+process is the first process that was started when the server was started, and it is
+responsible for managing all other processes, directly or indirectly. As a result,
+on system reboots or halts, the Systemd process needs to make sure that all
+these processes are stopped.
+
+reboot, halt, poweroff cmds are equivilant to `systemctl
+reboot|halt|poweroff`.
+
+halt: stops all processes and shuts down the CPU. However, it does not power off the machine; it just halts the system. This means that the system stops running, but the power remains on, and the hardware is not completely turned off. This is useful if you want to stop all processes but leave the machine in a state where you might be able to restart it quickly.
+
+poweroff: not only halts the system but also powers off the machine.
+
+emergency reset option (if reboot not working):
+echo b > /proc/sysrq-trigger # as root
+
+Use -v to observer why ssh is running slow. After you connect to the remote
+server, a public key fingerprint of remote server is stored in the file
+~/.ssh/known_hosts. -Y enables support for graphical apps.
+
+If you encounter a mismatch (that may happen if remote server gets
+reinstalled or the same IP is being used by a different server now) between the host key fingerprint that is presented and
+the one that you’ve cached on local machine, you just have to remove the key fingerprint from the
+~/.ssh/known_hosts file on the client computer.
+Systemwide ssh config: /etc/ssh/ssh_config

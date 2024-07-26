@@ -1,0 +1,114 @@
+/run is the default location where temporary files are created. Notice that
+these can also be created in the /tmp directory, but within /run a directory
+structure is created to ensure each process has its own environment that is not
+accessible by other processes, and that makes /run more secure. Further, the
+/var directory is used on Linux to store (log) files that may grow
+unexpectedly.
+
+The df -hT command shows mounted devices and the amount of disk space
+currently in use on these devices and FS type.
+
+The cp -a, --archive, command in Unix-like operating systems is used to copy
+files (including hidden ones) and directories while preserving their attributes
+and ensuring an exact replication. The -a option implies recursive copying
+(-r), which means it will copy all contents of directories, including
+subdirectories and their contents.
+
+/srv: May be used for data by services like NFS, FTP, and HTTP.
+/sys: Used as an interface to different hardware devices that are managed by 
+the Linux kernel and associated processes.
+
+Mounting devices makes it possible to organize the Linux file system in a
+flexible way. There are several disadvantages to storing all files in just one
+file system, which gives several good reasons to work with multiple mounts:
+-High activity in one area may fill up the entire file system, which will
+negatively impact services running on the server. -If all files are on the
+same device, it is difficult to secure access and distinguish between different
+areas of the file system with different security needs. By mounting a separate
+file system, you can add mount options to meet specific security needs.  -If a
+one-device file system is completely filled, it may be difficult to make
+additional storage space available.
+
+/boot: This directory is often mounted on a separate device because it requires
+essential information your computer needs to boot. Because the root directory
+(/) is often on a Logical Volume Manager (LVM) logical volume, from which Linux
+cannot boot by default, the kernel and associated files need to be stored
+separately on a dedicated /boot device. /boot/EFI: If a system uses Extensible
+Firmware Interface (EFI) for booting, a dedicated mount is required, giving
+access to all files required in the earliest stage of the boot procedure.
+■/var: This directory is often on a dedicated device because it grows in a
+dynamic and uncontrolled way (for example, because of the log files that are
+written to /var/log). By putting it on a dedicated device, you can ensure that
+it will not fill up all storage on your server.  ■/home: This directory often
+is on a dedicated device for security reasons. By putting it on a dedicated
+device, you can mount it with specific options, such as noexec and nodev, to
+enhance the security of the server. When you are reinstalling the operating
+system, it is an advantage to have home directories in a separate file system.
+The home directories can then survive the system reinstall.  ■/usr: This
+directory contains operating system files only, to which normal users normally
+do not need any write access. Putting this directory on a dedicated device
+allows administrators to configure it as a read-only mount.
+
+The mount command gives an overview of all mounted devices. To get this
+information, the /proc/mounts file is read, where the kernel keeps information
+about all current mounts. It shows kernel interfaces also
+
+findmnt shows mounts & the existing relationship between them. Has better
+output format.
+
+tmpfs devices are kernel devices that are used to create a temporary file
+system in RAM.
+
+ls -d: shows name of dir, not contents
+ls -R: recursively descends all subdirs.
+
+Linux stores administrative data about files in inodes. The inode is used to
+store all administrative data about files. Every file on Linux has an inode,
+and in the inode, important information about the file is stored: 1)The data
+block where the file contents are stored. 2)The creation, access, and
+modification date 3)Permissions 4)File owners
+
+Just one important piece of information is not stored in the inode: the name of
+the file. Names are stored in the directory, and each filename knows which
+inode it has to address to access further file information. It is interesting
+to know that an inode does not know which name it has; it just knows how many
+names are associated with the inode. These names are referred to as hard links.
+So every file always has one hard link to start with, which is the name of the
+file.
+
+When you create a file, you give it a name. Basically, this name is a hard
+link. On a Linux file system, multiple hard links can be created to a file.
+This is useful if a file with the same contents needs to be available at
+multiple locations, and you need an easy solution to keep the contents the
+same. If a change is applied to any one of the hard links, it will show in all
+other hard links as well, as all hard links point to the same data blocks. Some
+restrictions apply to hard links, though: ■Hard links must exist all on the
+same device (partition, logical volume, etc).  ■You cannot create hard links to
+directories.  ■When the last name (hard link) to a file is removed, access to
+the file’s data is also removed.
+
+A symbolic link (also referred to as a soft link) does not link directly to the
+inode but to the name of the file. This makes symbolic links much more
+flexible, but it also has some disadvantages. The advantage of symbolic links
+is that they can link to files on other devices, as well as on directories. The
+major disadvantage is that when the original file is removed, the symbolic link
+becomes invalid and does not work any longer.  Unlike symbolic links, if the
+first hard link is removed, that does not impact the other hard links that
+still exist. Hard links share the same inode, symbolic links don't.
+
+Running '\cmd' will not trigger an alias but instead an actual cmd in path.
+Also, to remove a sym link to a dir do `rm DIR_LINK`. Running `rm -r DIR_LINK`
+will instead remove files inside the dir linked to
+
+tar -cvf dir.tar dir # create tar archive
+tar -rvf dir.tar myfile # add file to tar archive
+tar -uvf dir.tar dir # update tar archive (write newer version to archive)
+tar -tvf dir.tar dir # list files in tar archive
+tar -xvf dir.tar # extract tar archive to CURRENT dir
+tar -xvf dir.tar -c TARGET # extract tar archive to TARGET dir
+tar -xvf dir.tar ./myfile # extract myfile from tar archive
+
+use bunzip2, xz, gunzip commands for compression, or use the compression
+feature they have in tar: -z for gzip, -J for xz, -j for bzip2
+No need to use these options when extracting, only when creating.
+`gzip archive.tar` will produce `archive.tar.gz`. Use -d to decompress

@@ -1,0 +1,38 @@
+When you run the ls -l command, the second field in the output represents the
+number of hard links to the file or directory. It tells you how many directory
+entries refer to the file. For regular files, this number is typically 1 unless
+there are additional hard links created to the file. For directories, this
+number is at least 2 (one for the directory itself and one for its . entry),
+and it increases by one for each subdirectory contained within it due to their
+.. entry.
+
+ln TARGET LINK # create hard link LINK
+ln -t DIR TARGET # create hard link to TARGET in DIR
+
+ls -ltr # will list from oldest to newest, -t time -r reverse
+
+cmd > file 2>&1 # redirect stdout & stderr to file
+equivilant to cmd &> file
+< aka 0<: stdin
+1>: stdout
+2>: stderr
+
+The command `history -c` removes the in-memory state from the history file of
+current history. That doesn’t just remove the line that contains the password,
+but everything. Use history -d <number> to remove a line with a specific
+number. Type ! followed by the first letters in the command to execute that
+cmd from history.
+
+- The /etc/motd file contains messages that are displayed after user login on a
+  terminal session. 
+- If you want to show a message before users log in, edit the /etc/issue file. 
+- /etc/profile is processed by all users upon login
+- You want to set a local variable that will be available for every user in
+  every shell: use /etc/bashrc. this file is processed when subshells are
+started
+- ~/.bashrc: user specific login shell variables, functions, aliases, etc.
+
+The man -k command uses a database to find the keywords you are looking for. On
+RHEL 9, this database is updated with the mandb command. On older versions of
+RHEL (prior to RHEL 7), the makewhatis command was used instead. Also keep in
+mind the /usr/share/doc dir.

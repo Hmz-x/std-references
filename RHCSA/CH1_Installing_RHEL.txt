@@ -1,0 +1,50 @@
+Some Key Benefits of Redhat:
+-Monitored updates and patches that have gone through a thorough testing
+procedure
+-Different levels of support and help, depending on which type of subscription you have purchased
+-A certified operating system that is guaranteed to run and to be supported on specific hardware models
+-A certified platform for running enterprise applications such as SAP 
+middleware, Oracle Database, and many more
+-Access to the Red Hat Customer Portal at https://access.redhat.com, where
+you can find much detailed documentation that is available to customers only
+
+Red Hat is involved in two free alternatives also: -CentOS Stream & -Fedora
+Apart from these, there are also two community initiatives to provide free
+alternatives to RHEL, which contain the same software but without the Red Hat
+branding: -Rocky Linux & -AlmaLinux AlmaLinux and Rocky Linux are community
+distributions that provide the same software as in RHEL, but without any
+license restrictions or support.These distributions are independently
+developed and in no way supervised by Red Hat. If you want to use a 100 percent
+compatible alternative for RHEL without being bound by any license conditions,
+both AlmaLinux and Rocky Linux are good alternatives.
+
+In RHEL you need to set up Subscription Manager to get access to repos.
+RHEL's minimum reqs. are 1 GiB RAM, 10 GiB Hard Disk space, & a network
+card.
+
+KDUMP: Kernel that creates a Core Dump, essentially a file that contains a
+detailed snapshot of the memory of the crashed kernel, including the state of
+processes, kernel modules, and other relevant information at the time of the
+crash, if anything goes wrong
+
+To perform the tasks that need to be performed on the RHCSA exam, some
+easy-to-use graphical tools are available, so it does make sense to install a
+server with a graphical user interface (GUI), even if you would never do this
+in a production environment.
+
+In RHEL, file systems are configured with the default XFS file system.
+
+"Upstream" refers to the original source or primary repository where the main development of a project takes place. For the Linux kernel, the upstream source is the official Linux kernel repository maintained by Linus Torvalds and other core maintainers.
+
+"Downstream" refers to the distributions or projects that use the upstream
+software as a base but may modify it for specific purposes. In the context of
+Linux, downstream refers to Linux distributions (distros) like Ubuntu, Fedora,
+Debian, and others, which take the upstream Linux kernel and customize it for
+their user base.
+
+Downstream projects regularly sync with the upstream project to get the latest
+updates and improvements. However, they may also maintain their own set of
+patches or changes that are specific to their distribution. If a downstream
+project creates a useful feature or fix, they might submit it back to the
+upstream project for consideration, ensuring that it benefits the broader
+community.

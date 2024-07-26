@@ -1,0 +1,11 @@
+You are given 3 hrs in a live system (no multiple-choice questions) to 
+perform certain tasks. There will be 2 virtual machines: for node1
+you will be given credentials, for node2 you are expected to recover
+the root password.
+
+Rebooting a Linux server is an important task on the RHCSA exam. Everything
+you have configured should still be working after the server has rebooted.  So,
+make sure that you reboot at least once during the exam, but also after making
+critical modifications to the server configuration. If your server cannot
+reboot anymore after applying critical modifications to your server’s
+configuration, at least you know where to look to fix the issues.

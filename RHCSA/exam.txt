@@ -1,4 +1,0 @@
-You are given 3 hrs in a live system (no multiple-choice questions) to 
-perform certain tasks. There will be 2 virtual machines: for node1
-you will be given credentials, for node2 you are expected to recover
-the root password.
