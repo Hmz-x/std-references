@@ -72,3 +72,11 @@ reinstalled or the same IP is being used by a different server now) between the 
 the one that you’ve cached on local machine, you just have to remove the key fingerprint from the
 ~/.ssh/known_hosts file on the client computer.
 Systemwide ssh config: /etc/ssh/ssh_config
+
+sftp command is a part of the SSH solution and enables users to use an FTP
+command-line syntax to transfer files using sshd. `scp -P PORT` or `ssh -p
+PORT` for port use. Notice that when working with sftp, the local directory is important, even if after
+opening the FTP session you only see the remote directory on the server. When
+you’re downloading a file using the get command, the file will be stored in the
+current local directory, and when you’re uploading a file using put, the file will be
+searched for in the local directory.

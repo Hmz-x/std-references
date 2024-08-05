@@ -1,0 +1,19 @@
+install proxychains-ng & start tor service (running on port 9050)
+Add the following line to /etc/proxychains.conf for traffic to be proxied
+through tor: 
+socks5 127.0.0.1 9050
+
+Run each subsequent command as `proxychains CMD`.
+
+# Verbose output, stop when found (-F), 4 threads
+hydra -l username -p passwd PORT://DOMAIN -FV -t 4
+hydra -L user_wl -P pass_wl PORT://DOMAIN -FV -t 4
+# Use hydra -R to restore from last restore file
+# Note: hydra only allows for maximum of 50 million passwords per cmd
+
+Use crunch to create wordlists
+crunch 3 6 'abcdefg' -o ~/.local/src/haxx/alphanumeric_3_6.out
+
+# Alternatively pipe output to crunch and split into NUM lines
+crunch 3 6 -f /usr/share/crunch/charset.lst mixalpha-numeric-symbol14 | split -l 50000000 -d --additional-suffix=".txt" - ~/.local/src/crunch_wl/
+Note: destination folder must exist!
