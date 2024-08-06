@@ -1,0 +1,58 @@
+Nakama Server Runtime Project
+1 - Download & install go binaries
+2 - Initialize Go Project & set up dependencies
+3 - Write a bootstrapper as module's entrypoint
+4 - Implement a health check RPC
+5 - Write docker config files
+6 - Run server via Docker
+7 - Verify via Nakama Console
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1
+sudo apt install go # for instance
+
+2
+# creates go.mod which handles all deps:
+go mod init heroiclabs.com/go-setup-demo 
+# install module from remote repo:
+go get github.com/heroic-labs/nakama-common/runtime
+
+3 & 4
+Bootstrapper & healthcheck example:
+
+package main
+
+import (
+	"context"
+	"database/sql"
+	"time"
+
+	"github.com/heroiclabs/nakama-common/runtime"
+)
+
+// Bootstrap
+func InitModule(ctx context.Context, logger runtime.Logger, db *sql.DB, nk runtime.NakamaModule, initializer runtime.Initializer) error {
+  initStart := time.Now()
+
+  // Healthcheck
+  err := initializer.RegisterRPC("healthcheck", RpcHealth)
+  if err != nil {
+    return err
+  }
+  
+  logger.Info("Module loaded in %dms", time.Since (initStart).Milliseconds())
+  return nil
+}
+
+5
+have local.yml (nakama game server configuration),
+Dockerfile and docker-compose.yml
+
+6
+To run the server: docker compose up
+
+7
+Connect to Nakama Console (Web interface):
+http://127.0.0.1:7351
+Default credentials: admin, password

@@ -1,0 +1,14 @@
+Bootstrapper is the code that runs first. It sets the server, initializes
+components and ensures that all neccessary configuration, plugins & resources
+are loaded. The bootstrapper initializes the game loop.
+
+Nakama supports Custom Game Logic written in Go, Lua, TypeScript & JavaScript.
+
+Remote Procedure Call (RPC) is a protocol that one program can use to request a service from a program located on another computer in a network. It's like calling a function or procedure, but instead of the function being in the same program or even on the same machine, it’s on a different machine.
+A health check is a diagnostic operation to determine the health or status of a service or application. It's commonly used in distributed systems to ensure that all services are running correctly.
+An RPC health check combines the concepts of RPC and health checks. It’s an RPC-based mechanism to remotely check the health status of a service. A client sends an RPC request to the service, asking if it’s healthy, and the service responds with its health status. This is useful in microservices architectures where services might be distributed across many machines.
+
+Nakama is a scalable server for social and real-time games and apps. Nakama works as a distributed cluster so when your game or app gets featured in the App Store then all you need do is launch a few more instances and you’ll handle the extra load with ease.
+
+One of the biggest advantages of using Nakama in a Docker env is that
+it allows you to easily integrate CockroachDB or Postres into that env. 
