@@ -1,0 +1,46 @@
+The console provides the following pages and features:
+Status
+User Management
+Configuration
+Runtime Modules
+Accounts
+Groups
+Storage
+Leaderboards
+Chat Messages
+Matches
+API Explorer
+
+The Status page provides a real-time view of your Nakama server, with usage details for each node and a general view into bandwidth and latency, including:
+Latency: The time spent executing Remote Procedure Call (RPC) functions, in milliseconds (ms)
+Rate: The number of RPCs per second
+Input: Inbound traffic in kilobytes per second (kb/s)
+Output: Outbound traffic in kilobytes per second (kb/s)
+
+The User Management page allows you to add new console users, or delete any
+existing users. When creating new users there are four available roles,
+(administrator, developer, maintainer, view only) enabling you to set up your support team with access to only the UI features they need.
+The User Management page is only available to users with the Administrator role.
+
+The Configuration page enables you to view and export all configuration
+details of your Nakama server. Additionally, you can import, external, storage data or delete all data. Importing storage data into Nakama could involve the following: player data, game state data, leaderboards and rankings, etc.
+
+The Runtime Modules page allows you to easily observe what functions are active within your project and when they were last modified. Nakama server enables you to write server side code in Go, Lua, and TypeScript.
+
+The Accounts page displays a list of all user accounts, searchable according to user ID and username. From here you can view, edit, and delete any user.
+By default the System User is always present, represented by UUID
+00000000-0000-0000-0000-000000000000. You can view and edit the user’s
+Profile, Authentication links, Friends, Groups, Wallet, Purchases,
+Subscriptions, and Storage objects.
+
+The Groups page displays a list of all user groups, searchable according to group ID and name. From here you can view, edit, and delete any group, and manage group members. A group or clan brings together a bunch of users into a small community or team.
+
+The Storage page displays a list of all storage objects, searchable according to collection name, key name, and user ID. From here you have view, edit, and delete any storage object.
+
+The Leaderboards page enables you to view and manage your leaderboards and tournaments, and their corresponding records.
+
+The Chat Messages page enables you to view and manage your users’ chat messages and associated details.
+
+The Matches page displays the ten most recent matches, enabling you to investigate your running matches and providing you a quick snapshot of what your player base is up to at any given moment.
+
+Nakama has support for many different languages and engines and provides open-source SDKs for the most popular ones.

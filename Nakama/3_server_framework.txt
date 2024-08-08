@@ -1,0 +1,28 @@
+Nakama includes a fast embedded code runtime enabling you to write custom logic as a JavaScript bundle, Go plugins, and Lua modules. The runtime framework is essential to writing server-side logic for your games or apps. Use it to write code you would not want to run on client devices or the browser. The code you deploy with the server can be used immediately by clients, allowing you to change behavior on the fly and add new features faster. This code can be used to run authoritative logic or perform validation checks as well as integrate with other services over HTTPS.
+
+By default the server will scan all files within the data/modules folder relative to the server file or the folder specified in the YAML configuration at startup.
+
+Files with the .lua, .so, and .js extensions found in the runtime path folder will be loaded and evaluated as part of the startup sequence. Each of the runtimes has access to the Nakama API to operate on messages from clients as well as execute logic on demand.
+
+The different supported languages are loaded with a precedence order of Go -> Lua -> JavaScript. This ensures deterministic behavior if match handlers or RPC functions/hooks are registered in multiple runtimes, providing the flexibility to leverage the different runtimes as best suited and have them work seamlessly together. For example, you can define an RPC function in the JavaScript runtime to create a match with a set of match handlers written in Go. The runtime includes a database object that can be used to access the underlying game database. 
+A logger instance included in the server runtime enables you to write and access log messages in your server code using the following severities: INFO, WARN, ERROR, and DEBUG
+The Nakama module is included in the code runtime built into the server. This module provides access to a range of functions for implementing custom logic and behavior.
+Remote Procedure Calls (RPCs) let you call functions registered in your runtime code to operate on messages received from clients or execute custom logic on demand, for example a profanity filter for chat messages.
+Hooks: You can register functions in your runtime code to be called when certain events occur. All runtime code is evaluated at server startup and can be used to register functions called hooks. You can register before hooks to intercept and act on client messages, after hooks to call a function after an event has been processed, and custom RPC hooks which can be called by clients.
+Any function may be registered to intercept a message received from a client and operate on it (or reject it) based on custom logic. This is useful to enforce specific rules on top of the standard features in the server, or to replace what would otherwise be an invalid input.
+
+Input validation does not apply until after execution of any before hooks, meaning clients can send larger (or otherwise invalid) inputs than the server would normally allow so long as the before hook replaces the input with a valid one. For example, given custom authentication IDs must be between 6-128 bytes, if your external authentication provider returns a longer ID use a before hook to replace that input with a valid ID.
+
+An HTTP endpoint is a specific URL or URI on a web server that is designed to handle requests sent via the Hypertext Transfer Protocol (HTTP). It acts as a point of interaction between a client (such as a web browser, mobile app, or game server) and the server. When a client sends an HTTP request to an endpoint, the server processes the request and sends back a response. When working with Nakama, you often interact with the server via HTTP endpoints using POST and GET requests. These interactions are commonly used for tasks such as player authentication, managing user data, matchmaking, and sending custom events.
+
+curl -X POST "http://localhost:7350/v2/account/authenticate/email" \
+-d '{
+      "email": "user@example.com",
+      "password": "password123",
+      "create": true
+    }' \
+-H 'Authorization: Basic base64_encoded_server_key'
+
+curl -X GET "http://localhost:7350/v2/account" \
+-H 'Authorization: Bearer session_token'
+

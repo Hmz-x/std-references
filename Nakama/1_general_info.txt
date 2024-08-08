@@ -12,3 +12,21 @@ Nakama is a scalable server for social and real-time games and apps. Nakama work
 
 One of the biggest advantages of using Nakama in a Docker env is that
 it allows you to easily integrate CockroachDB or Postres into that env. 
+
+CLI commands:
+Nakama: start the server with the default configuration (or passed options)
+migrate up|down|redo|status: manage database scheme change
+
+There are a few configuration properties that need to be changed in most environments, for example you must change the values of socket.server_key, session.encryption_key and runtime.http_key before you deploy Nakama to a live production environment.
+
+Upgrade nakama:
+docker-compose down # top and remove both the Nakama and CockroachDB containers
+docker pull heroiclabs/nakama # download the latest Nakama image
+docker-compose up # start the containers (both Nakama and CockroachDB) as fresh installs
+update the CockroachDB container:
+docker pull cockroachdb/cockroach
+run a database schema migration:
+docker run heroiclabs/nakama migrate up
+
+Prometheus is an open-source systems monitoring and alerting toolkit, designed for collecting and querying time-series data, making it one of the most popular tools for monitoring in cloud-native environments.
+Prometheus Metrics are the time-series data points collected and stored by Prometheus. They represent various aspects of the system or application being monitored, such as CPU usage, memory consumption, request rates, error rates, and more.
