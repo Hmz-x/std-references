@@ -1,0 +1,8 @@
+PCAPNG files, or "Packet Capture Next Generation" files, are a format used to
+store network packet data. They are an evolution of the older PCAP format and
+provide several enhancements, including support for more advanced capture
+options, the ability to store more detailed information about packets, and the
+ability to include multiple types of packet data in a single file.
+
+Layer 2 "Frame" changes on the phsyical technology being used.
+Frame examples are: 

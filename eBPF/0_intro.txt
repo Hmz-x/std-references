@@ -1,0 +1,21 @@
+eBPF (extended Berkeley Packet Filter) can run programs from the
+userspace inside the linux kernel. It allows for "programming" (in) the 
+kernel without modifying the kernel, as in changing kernel source code or
+loading kernel modules.
+
+While traditionally, to observe kernel-level actions and the behavior of userland programs, we would have to rely on system calls that introduce overhead and limitations, by using eBPF, we can directly observe and interact with this behavior within kernel space, making eBPF a powerful tool for low-overhead and flexible monitoring.
+
+eBPF acts like a mini virtual machine (VM) inside the Linux kernel. It has its own instruction set and can run eBPF programs in a safe, controlled environment. This "VM" is very lightweight, so it doesn’t slow down your system much.
+
+eBPF is built into the Linux kernel by default. It started as a packet filtering tool (hence the name), but it has evolved into something much more powerful.
+
+eBPF allows you to write programs that can observe, modify, and control how the kernel behaves. For example, you can monitor network traffic, track system calls, or enforce security policies—all without needing to write custom kernel modules or change the kernel code. eBPF programs are run in response to specific events (like a network packet arriving or a file being opened) and can provide detailed insights into what's happening inside the system.
+
+In eBPF, hooks refer to the specific points in the kernel where you can attach your eBPF programs, triggered by various events in the system.
+Note: Running code in the kernel may be inherently a little dangerous. You
+must be sure that it won't disrupt correct operations of your system.
+
+Hook Overview:
+Process --calls execve()--> System call occurs --enters kernel space-->
+eBPF (if attached) --intercepts or observes-->
+System call execution continues --code proceeds to kernel scheduler-->
