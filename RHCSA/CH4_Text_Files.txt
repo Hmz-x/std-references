@@ -1,11 +1,15 @@
-By default, the sort command sorts in byte order, which is the order in which the
-characters appear in the ASCII text table, not alphabetical order.
--r: reverse, -n: numeric
-sort -k 3 -t : /etc/passwd # sort 3rd field, delimeted by ':'
+By default, the sort command sorts in byte order, which is the order in which
+the characters appear in the ASCII text table, not alphabetical order. 
+
+sort options & usage:
+-r # reverse
+-n # numeric sort 
+-k 3 -t : /etc/passwd # sort 3rd field, delimeted by ':' 
 ps aux | sort -nk 4 # sort 4th field, tab delimeted
 
 regex:
-'^ann[ae]$'
+# match line that starts with a, followed by nn and ends with a or e
+'^ann[ae]$' 
 .: one specific character
 *: zero or more
 ?: zero or one
@@ -15,5 +19,5 @@ regex:
 
 Extended set of regex differs from the base set (thus use -E).
 `grep -v` shows only lines that do not contain the regular expression.
-`grep -v -e '^#' -e '^$'/etc/services` exclude all lines that are empty or
+`grep -v -e '^#' -e '^$' /etc/services` exclude all lines that are empty or
 start with '#'. -e is used for searching multiple regex patterns.

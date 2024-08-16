@@ -8,7 +8,7 @@ unexpectedly.
 The df -hT command shows mounted devices and the amount of disk space
 currently in use on these devices and FS type.
 
-The cp -a, --archive, command in Unix-like operating systems is used to copy
+The cp -a|--archive command in Unix-like operating systems is used to copy
 files (including hidden ones) and directories while preserving their attributes
 and ensuring an exact replication. The -a option implies recursive copying
 (-r), which means it will copy all contents of directories, including
@@ -21,12 +21,16 @@ the Linux kernel and associated processes.
 Mounting devices makes it possible to organize the Linux file system in a
 flexible way. There are several disadvantages to storing all files in just one
 file system, which gives several good reasons to work with multiple mounts:
+
 -High activity in one area may fill up the entire file system, which will
-negatively impact services running on the server. -If all files are on the
-same device, it is difficult to secure access and distinguish between different
-areas of the file system with different security needs. By mounting a separate
-file system, you can add mount options to meet specific security needs.  -If a
-one-device file system is completely filled, it may be difficult to make
+negatively impact services running on the server. 
+
+-If all files are on the same device, it is difficult to secure access and
+distinguish between different areas of the file system with different security
+needs. By mounting a separate file system, you can add mount options to meet
+specific security needs. 
+
+-If a one-device file system is completely filled, it may be difficult to make
 additional storage space available.
 
 /boot: This directory is often mounted on a separate device because it requires
@@ -36,18 +40,22 @@ cannot boot by default, the kernel and associated files need to be stored
 separately on a dedicated /boot device. /boot/EFI: If a system uses Extensible
 Firmware Interface (EFI) for booting, a dedicated mount is required, giving
 access to all files required in the earliest stage of the boot procedure.
-■/var: This directory is often on a dedicated device because it grows in a
+
+/var: This directory is often on a dedicated device because it grows in a
 dynamic and uncontrolled way (for example, because of the log files that are
 written to /var/log). By putting it on a dedicated device, you can ensure that
-it will not fill up all storage on your server.  ■/home: This directory often
-is on a dedicated device for security reasons. By putting it on a dedicated
-device, you can mount it with specific options, such as noexec and nodev, to
-enhance the security of the server. When you are reinstalling the operating
-system, it is an advantage to have home directories in a separate file system.
-The home directories can then survive the system reinstall.  ■/usr: This
-directory contains operating system files only, to which normal users normally
-do not need any write access. Putting this directory on a dedicated device
-allows administrators to configure it as a read-only mount.
+it will not fill up all storage on your server.  
+
+/home: This directory often is on a dedicated device for security reasons. By
+putting it on a dedicated device, you can mount it with specific options, such
+as noexec and nodev, to enhance the security of the server. When you are
+reinstalling the operating system, it is an advantage to have home directories
+in a separate file system.  The home directories can then survive the system
+reinstall.  
+
+/usr: This directory contains operating system files only, to which normal
+users normally do not need any write access. Putting this directory on a
+dedicated device allows administrators to configure it as a read-only mount.
 
 The mount command gives an overview of all mounted devices. To get this
 information, the /proc/mounts file is read, where the kernel keeps information
@@ -82,10 +90,12 @@ This is useful if a file with the same contents needs to be available at
 multiple locations, and you need an easy solution to keep the contents the
 same. If a change is applied to any one of the hard links, it will show in all
 other hard links as well, as all hard links point to the same data blocks. Some
-restrictions apply to hard links, though: ■Hard links must exist all on the
-same device (partition, logical volume, etc).  ■You cannot create hard links to
-directories.  ■When the last name (hard link) to a file is removed, access to
-the file’s data is also removed.
+restrictions apply to hard links, though: 
+
+-Hard links must exist all on the same device (partition, logical volume, etc).
+-You cannot create hard links to directories.  
+-When the last name (hard link) to a file is removed, access to the file’s data
+is also removed.
 
 A symbolic link (also referred to as a soft link) does not link directly to the
 inode but to the name of the file. This makes symbolic links much more
@@ -96,7 +106,7 @@ becomes invalid and does not work any longer.  Unlike symbolic links, if the
 first hard link is removed, that does not impact the other hard links that
 still exist. Hard links share the same inode, symbolic links don't.
 
-Running '\cmd' will not trigger an alias but instead an actual cmd in path.
+Running `\CMD` will not trigger an alias but instead an actual cmd in path.
 Also, to remove a sym link to a dir do `rm DIR_LINK`. Running `rm -r DIR_LINK`
 will instead remove files inside the dir linked to
 
@@ -107,6 +117,7 @@ tar -tvf dir.tar dir # list files in tar archive
 tar -xvf dir.tar # extract tar archive to CURRENT dir
 tar -xvf dir.tar -c TARGET # extract tar archive to TARGET dir
 tar -xvf dir.tar ./myfile # extract myfile from tar archive
+tar -cvf dir.tar -C dir . # cd to dir before creating tar archive
 
 use bunzip2, xz, gunzip commands for compression, or use the compression
 feature they have in tar: -z for gzip, -J for xz, -j for bzip2

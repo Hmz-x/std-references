@@ -11,25 +11,37 @@ ln -t DIR TARGET # create hard link to TARGET in DIR
 
 ls -ltr # will list from oldest to newest, -t time -r reverse
 
-cmd > file 2>&1 # redirect stdout & stderr to file
-equivilant to cmd &> file
-< aka 0<: stdin
-1>: stdout
-2>: stderr
+# redirect stdout & stderr to file:
+cmd > file 2>&1 
+# equivilant to:
+cmd &> file
 
-The command `history -c` removes the in-memory state from the history file of
-current history. That doesn’t just remove the line that contains the password,
-but everything. Use history -d <number> to remove a line with a specific
-number. Type ! followed by the first letters in the command to execute that
-cmd from history.
+< # stdin
+<0 # stdin
+1> # stdout
+2> # stderr
+
+The command `history -c` clears the entire in-memory history of commands,
+meaning it deletes all the commands you've run in the current session, not just
+the one you want to remove, such as a command containing a password.
+
+If you want to delete a specific command from your history, use the command
+`history -d <number>`, where <number> is the line number of the command you
+want to delete. You can find this number by typing history, which will list all
+your previous commands with their corresponding numbers.
+
+If you want to quickly re-run a command from your history, you can type !
+followed by the first few letters of that command. The terminal will then
+execute the most recent command that starts with those letters.
 
 - The /etc/motd file contains messages that are displayed after user login on a
-  terminal session. 
+terminal session. 
 - If you want to show a message before users log in, edit the /etc/issue file. 
 - /etc/profile is processed by all users upon login
 - You want to set a local variable that will be available for every user in
-  every shell: use /etc/bashrc. this file is processed when subshells are
+every shell: use /etc/bashrc. this file is processed when subshells are
 started
+- /etc/profile.d/ : scripts stored in this dir are sourced by /etc/profile
 - ~/.bashrc: user specific login shell variables, functions, aliases, etc.
 
 The man -k command uses a database to find the keywords you are looking for. On

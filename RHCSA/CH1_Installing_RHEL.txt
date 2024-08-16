@@ -11,12 +11,14 @@ you can find much detailed documentation that is available to customers only
 Red Hat is involved in two free alternatives also: -CentOS Stream & -Fedora
 Apart from these, there are also two community initiatives to provide free
 alternatives to RHEL, which contain the same software but without the Red Hat
-branding: -Rocky Linux & -AlmaLinux AlmaLinux and Rocky Linux are community
-distributions that provide the same software as in RHEL, but without any
-license restrictions or support.These distributions are independently
-developed and in no way supervised by Red Hat. If you want to use a 100 percent
-compatible alternative for RHEL without being bound by any license conditions,
-both AlmaLinux and Rocky Linux are good alternatives.
+branding: -Rocky Linux & -AlmaLinux 
+
+AlmaLinux and Rocky Linux are community distributions that provide the same
+software as in RHEL, but without any license restrictions or support.These
+distributions are independently developed and in no way supervised by Red Hat.
+If you want to use a 100 percent compatible alternative for RHEL without being
+bound by any license conditions, both AlmaLinux and Rocky Linux are good
+alternatives.
 
 In RHEL you need to set up Subscription Manager to get access to repos.
 RHEL's minimum reqs. are 1 GiB RAM, 10 GiB Hard Disk space, & a network
@@ -25,7 +27,7 @@ card.
 KDUMP: Kernel that creates a Core Dump, essentially a file that contains a
 detailed snapshot of the memory of the crashed kernel, including the state of
 processes, kernel modules, and other relevant information at the time of the
-crash, if anything goes wrong
+crash, if anything goes wrong.
 
 To perform the tasks that need to be performed on the RHCSA exam, some
 easy-to-use graphical tools are available, so it does make sense to install a
@@ -34,7 +36,10 @@ in a production environment.
 
 In RHEL, file systems are configured with the default XFS file system.
 
-"Upstream" refers to the original source or primary repository where the main development of a project takes place. For the Linux kernel, the upstream source is the official Linux kernel repository maintained by Linus Torvalds and other core maintainers.
+"Upstream" refers to the original source or primary repository where the main
+development of a project takes place. For the Linux kernel, the upstream source
+is the official Linux kernel repository maintained by Linus Torvalds and other
+core maintainers.
 
 "Downstream" refers to the distributions or projects that use the upstream
 software as a base but may modify it for specific purposes. In the context of
