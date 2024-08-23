@@ -1,0 +1,18 @@
+History
+
+The Origins of BPF
+The story of eBPF begins with its predecessor, the Berkeley Packet Filter (BPF), which was introduced in 1992. BPF was originally designed as a highly efficient mechanism for filtering network packets in the Unix operating system. Its primary purpose was to capture and filter specific types of network traffic, which was essential for network monitoring and diagnostics tools like tcpdump. BPF was a significant improvement over earlier packet capture mechanisms due to its just-in-time (JIT) compilation feature, which allowed packet filtering logic to be executed directly in the kernel with minimal overhead.
+
+From BPF to eBPF
+As the Linux kernel evolved and the need for more flexible, general-purpose tracing and monitoring tools grew, BPF's capabilities were expanded. This evolution led to the development of extended BPF (eBPF), which was designed not just for network packet filtering but for running general-purpose programs in the kernel. Unlike the original BPF, which was limited to packet filtering, eBPF introduced a more powerful virtual machine with a richer instruction set, enabling developers to write complex programs that could attach to various points within the kernel.
+
+The Arrival and Impact of eBPF
+eBPF was first merged into the upstream Linux kernel in version 3.15, released in June 2014. Over time, eBPF has grown from a specialized tool for network packet filtering into a versatile framework used for a wide range of kernel-level tasks, such as security, performance monitoring, and tracing. The eBPF VM allows for safe execution of user-defined programs within the kernel, significantly extending the original BPF's capabilities.
+
+Widespread Adoption
+Since its introduction, eBPF has seen widespread adoption across the tech industry, with major companies like Google, Facebook, Netflix, and Microsoft integrating it into their systems. Google uses eBPF extensively within its production infrastructure for monitoring, security enforcement, and performance optimization. Microsoft, on the other hand, has integrated eBPF into Windows, enabling cross-platform observability and network performance tools. Netflix employs eBPF for real-time troubleshooting and security monitoring in its complex microservices architecture.
+
+The Growing Ecosystem and Community
+The adoption of eBPF has led to the development of a vibrant ecosystem of tools, libraries, and frameworks. Projects like Cilium, which uses eBPF for high-performance networking and security in Kubernetes environments, have demonstrated the technology's potential in cloud-native applications. The BPF Compiler Collection (BCC) and bpftrace are popular frameworks that have simplified writing and deploying eBPF programs, making the technology more accessible to a broader audience.
+
+As eBPF continues to evolve, its community has grown, with contributions coming from developers across the globe. This collaborative effort ensures that eBPF remains at the cutting edge of kernel observability and control, with new features and use cases continually emerging.
