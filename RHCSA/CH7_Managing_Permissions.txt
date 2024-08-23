@@ -1,0 +1,20 @@
+When determining owner of the file, the shell first checks if the user is
+the owner, then the group, then if access was granted through ACLs, then
+lastly assumes other's permissions apply.
+
+`find ~ -user linda` or `find ~ -group josh` to search for files that belong
+to users or groups. `chgrp` can be used to change group ownership
+
+`groups user` will display the primary group of the user first. Use `newgrp`
+to temporarily change one's primary group; this will start a subshell with 
+the change applied.
+
+dir permissions: 
+read: list files
+write: create new files
+execute: cd into dir and read files in dir
+
+chmod relative mode:
+chmod [u|g|o|a]+|-perm FILE # where perm is r|w|x and a is all
+
+chmod -R a+X DIR/ # applies executable permissions to subdirs but not files

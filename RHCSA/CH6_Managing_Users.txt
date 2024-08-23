@@ -1,0 +1,76 @@
+Use the `id [user]` cmd to get info about a user.
+
+`PolicyKit` enables you to set up graphical utilities to run w/ admin
+privileges.
+
+when `su - [user]` is used, a login shell is started.
+
+use `visudo` to mofidy sudo config files.
+RHEL uses the `wheel` group to assign sudo permissions.
+Excerpt from /etc/sudoers:
+```
+## User privilege specification
+root ALL=(ALL:ALL) ALL
+
+## Give linda access to specific commands (except for running passwd root)
+linda ALL=/usr/bin/useradd,/usr/bin/passwd,! /usr/bin/passwd root
+
+## Uncomment to allow members of group wheel to execute any command
+%wheel ALL=(ALL:ALL) ALL
+
+## Same thing without a password
+%wheel ALL=(ALL:ALL) NOPASSWD: ALL
+
+## Extend sudo timeout
+Defaults timestamp_timeout=240
+```
+
+Files in `/etc/sudoers.d` are included while using `sudo`.
+
+Using pipes w/ sudo:
+sudo sh -c "rpm -qa | grep ssh"
+Using redirection w/ sudo:
+sudo sh -c "grep root /etc/passwd > myfile"
+
+use `pkexec` (PolicyKit executable) in case you lose access to `sudo`.
+
+UIDs up to 999 are typically used by sys accounts; UIDS ranging from 1000 to
+higher are user accounts. `/etc/login.defs` is the shadow file configuration
+file.
+
+/sbin/nologin is a special command that denies access to the shell and is
+assigned as the default shell for sys accounts.
+
+/etc/nologin.txt can also be used to deny login to non-root users.
+
+/etc/passwd contains username, x (bunk password field), UID, GID, Comment
+field, home dir, shell
+
+/etc/shadow contains login name, encrypted passwd, "UNIX" days since change,
+Days before passwd may be changed, Days after passwd must be changed, Days
+before passwd expiry to warn user, etc..
+
+The contents of `/etc/skel`, the "skeleton" dir, is copied over when creating home dirs. 
+
+useradd flags can allow for specifiying UID, groups, shell, etc.
+`usermod -s SHELL USER` can be used to modify a user's shell and can be
+set to /sbin/nologin for instance.
+
+/etc/default/useradd is used to set default values for useradd
+
+`passwd -n 30 -w 3 -x 90 linda` sets the pass-
+word for user linda to a minimal usage period of 30 days and an expiry after 90 days,
+where a warning is generated 3 days before expiry.
+
+`chage -l` will display current password management settings. `chage -E
+2025-12-31 bob` to have the account for user bob
+expire on December 31, 2025. Note: chage also an interactive mode
+
+Linux users must be a member of a single primary group but can also be part of
+1 or multiple secondary groups. Use `groupadd` to create groups
+
+/etc/group contains fields group name, group passwd, GID, members
+groups passwds are barely used anymore (but would be stored in /etc/gshadow)
+
+`groupmod` can be used to manage group properties. `lid -g GROUP` will show
+members of GROUP

@@ -3,6 +3,8 @@ sudo -i # requires privileged user passwd (thus deemed more secure)
 
 /var/log/secure: security events log in RHEL
 
+A subshell is a child process that is spawned by the current shell (the parent shell) to execute commands. It runs independently from the parent shell, meaning it has its own environment, variables, and current working directory.
+
 Historically, a console referred to a physical device that was the primary
 input/output interface for a computer system. This often included a keyboard
 and a display screen or a teletype machine. In modern systems, the console
@@ -33,8 +35,10 @@ as /dev/pts/2.  On earlier versions of Linux, pseudo terminals were seen as pty
 devices. These types of terminals are now deprecated and replaced with the pts
 terminal types
 
-`w` cmd shows who is logged in and what they are doing. Will show
+`w` and `who` cmds show who is logged in and what they are doing. Will show
 the terminal device logged in from (i.e. pts/0 or tty1)
+
+A subshell is a child process that is spawned by the current shell (the parent shell) to execute commands. It runs independently from the parent shell, meaning it has its own environment, variables, and current working directory.
 
 There are some scenarios, though, in which even experienced Linux 
 administrators have to reboot:
