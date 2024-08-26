@@ -9,3 +9,5 @@ make sure that you reboot at least once during the exam, but also after making
 critical modifications to the server configuration. If your server cannot
 reboot anymore after applying critical modifications to your server’s
 configuration, at least you know where to look to fix the issues.
+
+you need to be able to use SGID to create a shared group directory!

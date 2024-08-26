@@ -18,3 +18,44 @@ chmod relative mode:
 chmod [u|g|o|a]+|-perm FILE # where perm is r|w|x and a is all
 
 chmod -R a+X DIR/ # applies executable permissions to subdirs but not files
+
+Special perms:
+chmod u+s: SUID: run executable with permissions of owner
+chmod g+s: SGID: run executable with permissions of group owner (very useful
+to set on shared group directories, enables you to ensure that group ownership of all new files
+that will be created in a directory is set to the group owner of that directory)
+chmod +t: Sticky Bit: only file or parent dir owner has delete permission (useful to set on shared group directories)
+
+Note: SUID and SGID may pose a security risk that may allow for privilege
+escalation, do not use them unless neccessary
+
+`umask` is used to modify default permissions.
+An easy way to see how the umask setting works is as follows: Start with the default
+permissions for a file set to 666 and subtract the umask to get the effective permis-
+sions. For a directory, start with its default permissions that are set to 777 and sub-
+tract the umask to get the effective permissions.
+
+`umask 027` will grant no permission to other in the future
+
+An alternative method of securing files on a Linux server is by working with
+attributes. Attributes do their work regardless of the user who accesses the
+file. Note: some attributes are experimental and should be avoided.
+A: file access time of the file is not modified
+a: can add file but not remove
+c: file is compressed the first time the compression engine becomes active
+D: changes to files are written to disk
+immediately, and not to cache first. This is a useful attribute on important
+database files to make sure that they do not get lost between file cache and
+hard disk.
+i: file is immutable: no changes can be made
+s: overwrites the blocks where the file was stored with 0s after
+the file has been deleted. This makes sure that recovery of the file is not possible after it has been deleted.
+
+`lsattr FILE` to view attributes of a file
+`chattr +|-ATTR FILE` to add or remove attribute to file
+
+Attributes are one of the rare cases where you can even block access to
+the root user (via attr "i", for instance).
+
+# find all SUID bit set files & further investigate file perms🥵💧😎
+sudo find / -perm /4000 -type f 2>/dev/null | xargs ls -l
