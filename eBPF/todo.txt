@@ -1,0 +1,5 @@
+provide w/ code, and demo it
+create into a pdf via overleaf and insert images (kernel, ebpf, frostline)
+left off at dynamic loading
+talk about changes / features being implemented via ebpf being ready
+for production environments in days not months or years 

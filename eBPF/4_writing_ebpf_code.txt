@@ -1,0 +1,22 @@
+The kernel accepts eBPF code in the bytecode form. Utilities such as `bftool`
+, that exist within the userspace, help load the eBPF code into the kernel.
+`libbpf` is a popular library used for making portable ebpf programs that run
+on different versions of the kernel.
+
+A user space application uses the bpf() system call to load
+eBPF programs from an ELF file into the kernel. Once you have an eBPF program loaded into the kernel, it has to be attached to an event. Whenever the event happens, the associated eBPF program(s) are run.
+Some of the things eBPF programs can be attached to are entry or exit from
+kernel functions, tracepoints (/sys/
+kernel/debug/tracing/events), perf (used for collecting performance data),
+Linux Security Module Interface, eXpress Data Path (aka XDP, allows attaching
+an eBPF program to a network interface, so that it is triggered whenever a
+packet is received), sockets (for the purpose of "traffic control"), 
+
+Some features can be implemented with an eBPF program alone, but
+in many cases we want the eBPF code to receive information from,
+or pass data to, a user space application. The mechanism that allows
+data to pass between eBPF programs and user space, or between
+different eBPF programs, is called maps. Maps are data structures that are defined alongside eBPF programs.
+There are a variety of different types of maps, but they are all
+essentially key–value stores. eBPF programs can read and write to
+them, as can user space code.

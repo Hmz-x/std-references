@@ -1,0 +1,31 @@
+Continous integration:
+Code changes are automatically built, tested & merged
+
+Continous delivery/deployment:
+After integration, new app or package versions are published automatically
+
+Github Action is a workflow automation service that automates code deployment
+(CI/CD) and Code & Repo Management (automatic code reviews & issue
+management).
+
+git add FILE # stage changes
+git commit # create commit including staged changes
+git checkout COMMIT_ID # temporarily move to another commit
+git logs # shows current commit (that HEAD points to) and all preceding commits
+git revert # undo the changes made by a specific commit without removing it
+from the commit history. does not change commit history
+# merge conflicts may arise, if so fix files and stage changes
+git revert --continue # then run this to finish revert process
+git reset --hard COMMIT_ID # undo changes fully by deleting all new commits
+after COMMIT_ID aka changes commit history
+git stash # temporarily save changes
+git stash apply # apply changes
+git branch BRANCH # change to branch
+git checkout BRANCH # switch to branch
+
+
+stash vs stage:
+Staging is the process of preparing changes to be committed to the Git repository. When you stage a change, you are adding it to the "Staging Area" (or "Index"), which is a temporary area where Git gathers the changes you want to include in your next commit.
+Stashing is a way to temporarily save changes that you are not ready to commit. When you stash changes, Git takes the modifications in your working directory and stores them in a "stash stack." This allows you to clean your working directory without losing your work, so you can switch branches, pull in new changes, or perform other tasks without committing those changes.
+
+HEAD pointer points the latest commit automatically
