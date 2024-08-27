@@ -1,0 +1,15 @@
+In TCP there is a total of 65535 ports.
+
+-p PORT_RANGE # i.e 22 | 22-24 | - (1-65535)
+--exclude-ports PORT_RANGE
+-F # first 100 ports
+
+Attempt to keep scans limited to a smaller range of ports to avoid detection.
+`-sU` (requires root priv) will do a UDP scan instead of the default TCP scan.
+
+Top nmap commands:
+-sn # ping scan
+--top-ports 20 # check for most common 20 ports
+-O # OS scan (different OSes have different TCP stacks)
+-A # "all" scan (OS scan, port scan, fingerprinting, etc.)
+-p # simple port scan
