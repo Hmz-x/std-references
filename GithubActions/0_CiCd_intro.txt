@@ -20,8 +20,11 @@ git reset --hard COMMIT_ID # undo changes fully by deleting all new commits
 after COMMIT_ID aka changes commit history
 git stash # temporarily save changes
 git stash apply # apply changes
-git branch BRANCH # change to branch
+git branch BRANCH # create branch
 git checkout BRANCH # switch to branch
+git branch -D BRANCH # delete branch
+git checkout -b BRANCH # create & switch to branch
+git merge BRANCH # merge other branch with current one
 
 
 stash vs stage:

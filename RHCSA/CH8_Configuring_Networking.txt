@@ -1,0 +1,23 @@
+ipv4 addresses are 32-bit addresses
+ipv6 addresses are 128-bit addresses
+
+private IPs:
+10.0.0.0/8 (a single Class A network)
+172.16.0.0/12 (16 Class B networks)
+192.168.0.0/16 (256 Class C networks)
+
+Network Address Translation (NAT) is commonly used
+on the router that connects the private network to the Internet. In NAT, the nodes use a private IP address, but when accessing the Internet, this private IP address is replaced with the IP address of the NAT router. The NAT router in its turn uses tables to keep track of all connections that currently exist for the hosts in the network. Based on this table, the NAT router helps make it possible for computers with a private IP address to connect to hosts on the Internet anyway.
+
+In ipv6 range of zeros (and leading zero) can be emitted:
+02fb:0000:0000:0000:90ff:fe23:8998:1234 -> 2fb::90ff:fe23:8998:1234
+
+Subnet Masks:
+To know to which network a computer belongs, a subnet mask is used with every
+IP address. The subnet mask defines which part of the network address indicates
+the network and which part indicates the node. Subnet masks may be written in
+the Classless Inter-Domain Routing (CIDR) notation, which indicates the num-
+ber of bits in the subnet mask, or in the classical notation, and they always need
+to be specified with the network address. Examples include 192.168.10.100/24
+(CIDR notation), which indicates that a 24-bit network address is used, and
+192.168.10.100/255.255.255.0 (classical notation), which indicates exactly the same.
