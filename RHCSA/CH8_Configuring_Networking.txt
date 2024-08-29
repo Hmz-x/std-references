@@ -21,3 +21,38 @@ ber of bits in the subnet mask, or in the classical notation, and they always ne
 to be specified with the network address. Examples include 192.168.10.100/24
 (CIDR notation), which indicates that a 24-bit network address is used, and
 192.168.10.100/255.255.255.0 (classical notation), which indicates exactly the same.
+
+Our full address: 192.168.10.100/24
+192.168.10 -> network part
+100 -> host part
+192.168.10.0 -> network address
+192.168.10.255 -> broadcast address
+
+Each network card
+also has a 12-byte MAC address. MAC addresses are for use on the local network
+(that is, the local physical network or local WLAN, just up to the first router that is
+encountered); they cannot be used for communications between nodes that are on
+different networks. MAC addresses are important, though, because they help com-
+puters find the specific network card that an IP address belongs to.
+An example of a MAC address is 00:0c:29:7d:9b:17.
+The first 6 bytes is the vendor ID, and the second 6 bytes is the
+unique node ID. Vendor IDs are registered, and by using registered vendor IDs, it is
+possible to allocate unique MAC addresses.
+
+Tools
+ip addr # monitor & configure addresses
+ip route # monitor & configure routing
+ip link # monitor & configure routing
+# use -s to also display statistics
+
+The loopback interface is used for communication between processes. Some pro-
+cesses use the IP protocol for internal communications. every interface auto-
+matically gets an IPv6 address, which can be used for communication on the
+local network only.
+
+sudo ip -s link show: shows net cons + network packet statistics
+
+ip route show # show default router, aka default gateway, of net
+# example out:
+default via 192.168.4.2 dev ens33 proto dhcp metric 100
+...

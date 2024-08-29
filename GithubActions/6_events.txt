@@ -1,0 +1,23 @@
+Repo-related events:
+push, fork, watch, pull_request, issues, discussion, create, issue_comment
+
+Other:
+workflow_dispatch (manually triggered), repository_dispatch (REST API
+triggered), schedule (scheduled), workflow_call (called by other workflows)
+
+Events have activity types.
+For instance activity types related to pull_request is:
+assigned, unassigned, labeled, unlabeled, opened, etc.
+
+EXAMPLE:
+name: events practice
+# trigger when pull_request is opened or manually triggered
+on:
+  pull_request:
+    types:
+      - opened
+  workflow_dispatch:
+
+When Event Filters Are Used:
+Branch-Specific Workflows, Tag-Specific Workflows, Event-Type Filters,
+Path-Specific Workflows, Pull Request Filters, path Filters

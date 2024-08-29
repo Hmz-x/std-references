@@ -1,0 +1,55 @@
+name: Make Ready N Deploy
+on: push
+jobs:
+  get-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch all history for debugging purposes
+          submodules: true  # Include submodules if any
+          
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          
+      - name: Install dependencies
+        run: npm ci
+        env:
+          CI: true  # Ensure npm runs in CI mode for verbose output
+          
+      - name: Print current directory
+        run: pwd
+        
+      - name: List files in current directory
+        run: ls -al
+        
+      - name: List all files recursively
+        run: ls -R
+        
+      - name: Check if package.json exists
+        run: |
+          if [ ! -f package.json ]; then
+            echo "package.json not found!"
+            exit 1
+          fi
+        
+      - name: Run npm lint
+        run: npm run lint
+        env:
+          CI: true  # Verbose output from npm
+
+      - name: Run npm test
+        run: npm run test
+        env:
+          CI: true  # Verbose output from npm
+
+      - name: Run npm build
+        run: npm run build
+        env:
+          CI: true  # Verbose output from npm
+
+      - name: Deploy application
+        run: echo "DEPLOYING.."

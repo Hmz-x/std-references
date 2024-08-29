@@ -1,0 +1,45 @@
+name: Test Project
+on: [push, workflow_dispatch] # add another event trigger
+jobs: 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Deps
+        run: npm ci
+      - name: Run tests
+        run: npm test
+  deploy: # ran in parallel as test action
+    needs: test # performs this action after test action is complete
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Insall NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: build
+        run: npm run build 
+      - name: deploy
+        run: echo "Deploying.."
+
+
+Access Metadata
+~~~~~~~~~~~~~~~~
+name: Output info
+on: workflow_dispatch
+jobs:
+  info: # the name of our job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output Github context
+        # use an "expression" to get metadata from github
+        run: echo "${{ toJSON(github) }}"

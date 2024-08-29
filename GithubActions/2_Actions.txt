@@ -1,0 +1,44 @@
+An action is a custom application that performs a typically complex 
+frequently repeated task. In GH marketplace you can browse for different
+Actions (for free).
+
+.github/workflows/test.yml
+name: Test Project
+on: push
+jobs: 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Deps
+        run: npm ci
+      - name: Run tests
+        run: npm test
+  deploy: # ran in parallel as test action
+    # uncommenting the following will make it sequential:
+    # needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Insall NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: build
+        run: npm run build 
+      - name: deploy
+        run: echo "Deploying.."
+
+You can check for pre-installed sofware (which you can run) on the
+GH-hosted runners.
+
+GitHub Runner VMs are the underlying compute resources that GitHub Actions uses to run workflows. These runners can execute your jobs in a GitHub Actions workflow, allowing you to automate processes like building, testing, and deploying your code.
+jobs in a workflow typically run on separate runner machines unless you explicitly configure them to share a runner.

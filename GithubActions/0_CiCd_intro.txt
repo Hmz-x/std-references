@@ -25,7 +25,7 @@ git checkout BRANCH # switch to branch
 git branch -D BRANCH # delete branch
 git checkout -b BRANCH # create & switch to branch
 git merge BRANCH # merge other branch with current one
-
+git merge # merge changes in current branch
 
 stash vs stage:
 Staging is the process of preparing changes to be committed to the Git repository. When you stage a change, you are adding it to the "Staging Area" (or "Index"), which is a temporary area where Git gathers the changes you want to include in your next commit.

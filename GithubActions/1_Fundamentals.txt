@@ -1,0 +1,40 @@
+Workflows are attached to github repos.
+Workflows contain Jobs which contain Steps.
+you can have as many Workflows (that contain as many Jobs) as you need.
+
+Workflow are triggered upon Events.
+Jobs define a Runner, which is an execution environment.
+Jobs in a given Workflow run in parallel by default but can be configured to
+run sequentially.
+
+a Step corresponds to a shell command to execute or an Action
+
+REPO/.github/workflows/first-action.yml:
+name: First Workflow
+on: workflow_dispatch # requires manual triggering
+jobs: 
+  first-job: # identifier determined by user, i.e. second-job, my-job..
+    runs-on: ubuntu-latest # hosted virtual machines to run workflows on
+    steps:
+      - name: Print greeting
+        run: echo "Hello!!"
+      - name: Print goodbye
+        run: echo "DONE. bye!!"
+
+
+
+GH action files are a part of the code and can be found within the repo.
+Once workflows are added, the "Actions" tab on GH will show past workflow  
+runs and our identified workflows.
+
+Workflows have steps:
+Set up job
+Print greeting # user defined
+Print goodbye # user defined
+Complete job
+
+Running Multi-Line Shell Commands:
+...
+run: |
+    echo "First output"
+    echo "Second output"
