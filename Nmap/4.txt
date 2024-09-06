@@ -1,0 +1,19 @@
+Three-way handshake
+SYN, SYN-ACK, ACK
+port scans:
+-open: a SYN-ACK is recieved by client
+-closed 
+-filtered: packet was filtered by firewall
+-unfiltered
+
+`-sA`: ACK scan, designed for firewall rule testing
+
+-sS scan can be deteced by filtering for `tcp.window_size_value == 1024`
+-sT scan performs full handshakes
+-sN (Null scan) sends a TCP packet with no flags set—essentially an empty TCP header. This is unusual, as legitimate TCP packets typically have at least one flag set (like SYN, ACK, etc.).
+-sF (FIN scan) sends a TCP packet with the FIN flag set. Normally, this flag is used to gracefully close an established TCP connection, so sending it outside of an established session is abnormal.
+-sX (Christmas scan) sends a TCP packet with the FIN, PSH, and URG flags all set. This sets all the "interesting" flags, which can reveal different behaviors from the target system. It's called a "Christmas Tree" scan because the packet is "lit up" with all the flags.
+-sU (UDP scan)
+
+What response will a target send for Nmap to show a UDP port as "Closed"?
+ICMP Port Unreachable

@@ -1,0 +1,4 @@
+you can drag and drop flags from a single packet capture into the search field
+to show packets in the same category. 
+`tcp.flags == 0x0012` = `SYN-ACK`
+`tcp.flags.syn == 1` will filter all SYN packets (SYN and SYN-ACK).
