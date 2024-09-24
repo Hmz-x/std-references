@@ -1,1 +1,6 @@
+sudo nmap -v -O IP # verbose OS fingerprinting
+sudo nmap -sV IP # scan for open ports and determine version info
+sudo nmap -sV IP -oN FILE # output to FILE
 
+If the target does not have open ports, nmap might not be able to identify the
+system.

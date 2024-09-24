@@ -1,0 +1,16 @@
+Nmap scripts are written in lua. Scripts can be found in /usr/share/nmap/scripts.
+Running scripts are "noisy"; can be a lot easier more easier to detect than
+simple port scans. 
+
+Scripts are grouped under categories such as default, vulnerability,
+authentication, safe..
+
+sudo nmap --script-updatedb # update script db
+
+Default scripts:
+"Default" scripts are a set of scripts selected by the developers to be ran by
+default when options such as `-sC` and `-A` are used.
+
+
+nmap --script default HOST # run all default scripts
+nmap --script "http-*" HOST # run all scripts that match the wildcard

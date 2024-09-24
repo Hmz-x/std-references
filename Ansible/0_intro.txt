@@ -1,0 +1,5 @@
+Ansible is a toolset compromised of multiple tools/systems.
+
+Ansible playbook allows for working with Ansible's human readable deployment
+language. Ansible inventories refer to hosts, network switches, containers,
+storage arrays, etc.
