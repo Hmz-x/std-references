@@ -16,8 +16,8 @@ Subnet Masks:
 To know to which network a computer belongs, a subnet mask is used with every
 IP address. The subnet mask defines which part of the network address indicates
 the network and which part indicates the node. Subnet masks may be written in
-the Classless Inter-Domain Routing (CIDR) notation, which indicates the num-
-ber of bits in the subnet mask, or in the classical notation, and they always need
+the Classless Inter-Domain Routing (CIDR) notation, which indicates the number
+of bits in the subnet mask, or in the classical notation, and they always need
 to be specified with the network address. Examples include 192.168.10.100/24
 (CIDR notation), which indicates that a 24-bit network address is used, and
 192.168.10.100/255.255.255.0 (classical notation), which indicates exactly the same.
@@ -45,14 +45,14 @@ ip route # monitor & configure routing
 ip link # monitor & configure routing
 # use -s to also display statistics
 
-The loopback interface is used for communication between processes. Some pro-
-cesses use the IP protocol for internal communications. every interface auto-
-matically gets an IPv6 address, which can be used for communication on the
-local network only.
+The loopback interface is used for communication between processes. Some processes use the IP 
+protocol for internal communications. Every interface automatically gets an IPv6 address, 
+which can be used for communication on the local network only.
 
 sudo ip -s link show: shows net cons + network packet statistics
 
-ip route show # show default router, aka default gateway, of net
-# example out:
-default via 192.168.4.2 dev ens33 proto dhcp metric 100
-...
+# show default router, aka default gateway, of network:
+$ ip route show 
+default via 192.168.79.35 dev wlp0s20f3 proto dhcp src 192.168.79.201 metric 600
+172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 linkdown
+192.168.79.0/24 dev wlp0s20f3 proto kernel scope link src 192.168.79.201 metric 600
