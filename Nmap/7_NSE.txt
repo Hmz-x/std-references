@@ -11,6 +11,8 @@ Default scripts:
 "Default" scripts are a set of scripts selected by the developers to be ran by
 default when options such as `-sC` and `-A` are used.
 
-
 nmap --script default HOST # run all default scripts
 nmap --script "http-*" HOST # run all scripts that match the wildcard
+
+ Many network services, such as web servers, FTP servers, or SSH services,
+ display a banner upon connection (i.e. SSH-2.0-OpenSSH_9.9), which contains details about the service, such as its software version and configuration. NSE scripts like banner are used to capture and report this information.

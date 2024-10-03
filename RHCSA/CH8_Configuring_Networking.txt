@@ -56,3 +56,23 @@ $ ip route show
 default via 192.168.79.35 dev wlp0s20f3 proto dhcp src 192.168.79.201 metric 600
 172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 linkdown
 192.168.79.0/24 dev wlp0s20f3 proto kernel scope link src 192.168.79.201 metric 600
+
+Changes made via `ip` are non-persistent, for persisting changes use
+`nmcli|nmtui`. `nm-connection-editor` has a GUI interface but is more limited.
+
+nmcli dev show DEVICE # show settings for a device
+
+See man pages `nm-settings` and `nmcli-examples`
+
+Configuration files are stored under /etc/NetworkManager/system-connections
+
+Hostname resolution allows for hosts to contact each other based on hostname.
+`hostnamectl hostname HOSTNAME` to change hostname (or you can edit
+/etc/hostname or use nmtui). If DNS is configured use FQDN (server1.example.com)
+to refer to a device and set hostname as the FQDN.
+
+/etc/resolv.conf is used for DNS resolving but do not modify this file since the
+file is managed by Network Manager and the file contents are overwritten
+everytime NetworkManager restarts. 
+
+getent hosts HOSTNAME # verify hostname resolution
