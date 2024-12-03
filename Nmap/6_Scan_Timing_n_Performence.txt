@@ -1,3 +1,5 @@
 -T flag defines timing templates:
 0: paranoid, 1: sneaky, 2: polite, 3: normal, 4: agressive, 5: insane
-First two are used for IDS evasion 😍. -T 3 is default. T4 is usually preferable.
+
+First two are used for IDS evasion 😍.
+-T 3 is default. T4 is usually preferable.
