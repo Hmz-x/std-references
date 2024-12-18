@@ -1,0 +1,16 @@
+Templates, Endpoints, & Pods in Runpod
+
+Templates are pre-configured setups / environments that engineers can deploy. It
+simplifies the initilization of GPU instance by preloading software, libraries,
+& dependencies. The chosen template (i.e. TensorFlow, PyTorch, Stable Diffusion)
+determines the software stack and configuration on the GPU instance.
+
+  For example, if a developer wants to fine-tune a language model on a GPU
+  he can select a RunPod template with pre-installed ML libraries to save setup time.
+
+Endpoints are public or private access points (URL or IP address) that
+allow external systems to interact with a running GPU instance on RunPod.
+Endpoints allow engineers to to expose APIs or services running on the GPU
+instance.
+
+

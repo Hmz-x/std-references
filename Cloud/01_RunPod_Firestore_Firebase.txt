@@ -1,0 +1,19 @@
+RunPod: Cloud GPU Iaas for running AI & ML models in a scalable, efficient, &
+cost-effective manner.
+
+Firestore: A scalable, serverless NoSQL DATABASE offered by Google. Is a Baas
+(Backend as a Service) designed for real-time data synchronization and offile
+access in mobile & web apps.
+
+Firebase: BaaS PLATFORM that provides a suite of tools and services for
+building, managing, & scaling applications.
+
+Firestore is a key part of the Firebase & integrates seamlessly w/ other
+Firebase services.
+
+"Serverless" is when the underlying server infrastructure is abstracted away
+from the engineer/developer. For instance, RunPod provides access to GPU
+resources w/o the engineer having to do any physical or virtual server
+administration. Same goes for BaaS; the servers hosting the backend are not
+important. However, the serverless approach is less powerful and flexible since
+it offers less control of the entire system.
