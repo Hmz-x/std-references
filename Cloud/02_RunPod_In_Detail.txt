@@ -5,12 +5,26 @@ simplifies the initilization of GPU instance by preloading software, libraries,
 & dependencies. The chosen template (i.e. TensorFlow, PyTorch, Stable Diffusion)
 determines the software stack and configuration on the GPU instance.
 
-  For example, if a developer wants to fine-tune a language model on a GPU
-  he can select a RunPod template with pre-installed ML libraries to save setup time.
+For example, if a developer wants to fine-tune a language model on a GPU
+he can select a RunPod template with pre-installed ML libraries to save setup time.
 
 Endpoints are public or private access points (URL or IP address) that
 allow external systems to interact with a running GPU instance on RunPod.
 Endpoints allow engineers to to expose APIs or services running on the GPU
-instance.
+instance. They allow for easy integration of GPU-accelerated workloads into
+applications.
 
+Engineers define an endpoint when deploying a workload on a pod.
+(Workload referring to a specific task, application, or process that a pod
+is running.) Once the endpoint is live, it can be used to send requests, retrieve responses, or stream data.
 
+Pods serve as the isolated and secure computational environment where tasks
+are executed. Templates are like blueprints for pods, besides
+software engineers can define GPU type and driver configurations. GPU-accelerated computing refers to using a GPU alongside a CPU to perform computations more efficiently, particularly for tasks that involve parallel processing. GPUs are designed to handle multiple tasks simultaneously, making them ideal for workloads like machine learning, scientific simulations, and image rendering.
+
+To enable GPU acceleration on Linux, specific software and libraries are required to configure the system for efficient GPU utilization.
+The process begins with installing GPU drivers compatible with the hardware, such as NVIDIA or AMD drivers, to ensure proper communication between the operating system and the GPU. Additionally, the CUDA Toolkit, provided by NVIDIA, plays a crucial role in GPU acceleration. CUDA (Compute Unified Device Architecture) is a parallel computing platform and programming model that enables developers to harness the GPU's computational power for general-purpose tasks. It provides essential libraries, tools, and APIs for writing GPU-accelerated applications, particularly for tasks like machine learning, scientific computing, and data analysis. Alongside CUDA, libraries like cuDNN (CUDA Deep Neural Network) further optimize deep learning operations on GPUs. Frameworks such as TensorFlow, PyTorch, and OpenCV are then used to implement applications that leverage GPU acceleration, ensuring tasks are executed efficiently. 
+
+Notebook refers to an interactive development enviroment such as
+Jupyter Notebook or JupyterLab that is hosted and run on a GPU-accelerated
+pod. These notebooks are particularly useful for data science, machine learning, and AI development workflows, enabling users to write and execute code in a browser-based interface.
