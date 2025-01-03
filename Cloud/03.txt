@@ -64,7 +64,7 @@ event = {
         "task_id": "GQGJFeTisKpduynhYhUh",
         "canary": true,
         "firebase_config": {   "type": "service_account",   "project_id":
-        "ink-ai-82b04",   "private_key_id": "X",   "private_key": "X"
+        "ink-ai-82b04",   
         "bucket_name": "ink-ai-82b04.appspot.com"
     }
 }
