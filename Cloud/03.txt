@@ -60,13 +60,7 @@ from handlers.text2img_handler import handler # runs on ipykernel (python3.11)
 
 # enter a test payload (check project_id for matching project)
 event = {
-    "input": {
-        "task_id": "GQGJFeTisKpduynhYhUh",
-        "canary": true,
-        "firebase_config": {   "type": "service_account",   "project_id":
-        "ink-ai-82b04",   
-        "bucket_name": "ink-ai-82b04.appspot.com"
-    }
+PAYLOAD
 }
 
 print (handler (event))
