@@ -1,0 +1,87 @@
+Self-Hosted Runners
+
+A self-hosted runner is a system that you deploy and manage to execute jobs from
+GitHub Actions on GitHub. Self-hosted runners offer more control of hardware,
+operating system, and software tools than GitHub-hosted runners provide by using cloud services or local machines.
+
+You can add self-hosted runners at various levels in the management hierarchy:
+
+Repository-level runners are dedicated to a single repository.
+Organization-level runners can process jobs for multiple repositories in an organization.
+Enterprise-level runners can be assigned to multiple organizations in an enterprise account.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Git tags are a way to mark specific points in a repository's history as important or significant. They are often used to identify specific commits that correspond to release versions, milestones, or stable states of a project.
+
+git tag # view tags
+git tag v1.0 # create tag "v1.0"
+git push origin # push tag "v1.0"
+
+GH actions workflow that get triggered by a specific tag:
+```
+on:
+  push:
+    tags: [ v*-img2img ]
+```
+
+# While on dev branch
+git add .
+git commit -m "LOL"
+git tag v0.4.6-text2img
+git push origin v0.4.6-text2img
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Hugging Face is a technology company and open-source community that specializes in tools and platforms for machine learning (ML) and natural language processing (NLP).
+Hugging Face offers a variety of tools, platforms, and services aimed at simplifying and democratizing machine learning for developers, researchers, and businesses.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Google Cloud Platform (GCP) is the cloud infrastructure on which Firebase and Firestore operate. Firebase and Firestore are services built on top of GCP and leverage its capabilities to deliver their features.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+NOTEBOOK TESTING
+
+Pods are not used in production. Pods are only used in testing. Serverless is not
+interactive and is used for production.
+
+When picking pods pick GPU A40 (48 GB RAM), the notebook template (i.e.
+superlabbsco/ink-inference:v0.4.2-textimg-notebook) and update the img name, set
+workspace to /app), pick on-demand pricing (stop pod whenever done).
+
+When testing:
+/app/setup/setup.sh
+
+/app/setup/cache_img2img_model.py # run model
+
+# In notebook tab:
+from handlers.text2img_handler import handler # runs on ipykernel (python3.11)
+
+# enter a test payload (check project_id for matching project)
+event = {
+  PAYLOAD
+}
+
+print (handler (event))
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+nvidia-smi # show GPU stats
+nvcc -V # see CUDA driver version
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Serverless Endpoints
+
+Update docker img running: click the three dots -> New Release -> Enter new
+docker img name (i.e. superapplabsco/ink-inference:v0.4.5-text2img)
+
+Endpoints specs: 
+- 1 48GB GPU + 2 80GB GPU (PRO)
+- Max Workers: 3
+- Active Workers: 0
+- GPU Count: 1
+- Idle Timeout: 5s
+- Enable Execution Timeout + Execution Timeout: 600s
+- Enable Flashboot
