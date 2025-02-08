@@ -1,0 +1,62 @@
+## Ensure you have proper permissions to create cloud functions in the project
+
+You must be the owner of the project or have admin permissions to be able to
+create cloud functions.
+
+## In project/repo directory:
+
+```
+mkdir firebase && cd firebase
+sudo npm install -g firebase-tools
+firebase login
+firebase init functions # interactive TUI: select the project
+```
+
+## Determine rp_schema and payload for the project handler
+
+dub-ai-test:
+```
+INPUT_SCHEMA = {
+    "user_id": {
+        "type": str,
+        "required": True,
+    },
+    "task_id": {
+        "type": str,
+        "required": True,
+    },
+}
+```
+---
+```
+
+{
+    "input": {
+        "user_id": "bale",
+        "task_id": "jqR6i8xFXExWriUgvQyr"
+    }
+}
+```
+
+## Change directory, write webhook code, lint code, and deploy
+
+```
+cd functions
+vim index.js # Write Webhook 
+npm run lint -- --fix # checks for syntax errors
+firebase deploy --only functions --project PROJECT_ID # for example, PROJECT_ID is dub-ai-test-9596a
+```
+
+
+## * VERY IMPORTANT *
+## "Would you like to proceed with deletion? Selecting no will continue the rest of the deployments"
+
+Enter `N`
+
+## Notes
+
+- Webhooks can be written JS, TS, and Python. 
+- Project ID can be found Firebase Project Settings
+- There are two types of Webhooks: Before and After
+- Before Webhook: Validates, modifies, or rejects data before it is saved or processed
+- After Webhooks: Logs changes, triggers additional processes, or notifies other services
