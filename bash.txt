@@ -1,69 +1,174 @@
-Quick Notes:
-Pipelines create subshells.
-Using #!/usr/bin/env NAME makes the shell search for the 
-first match of NAME in $PATH.
-Use eval to replace regular shell substitution.
-#!/bin/bash -e exits with an error on any command that fails.
+## Advanced Bash Notes
 
-Options:
-printf -- '--' # The first '--' indicates the end of options.
+### 1. Bashisms (Non-POSIX Features)
+- `[[ ... ]]` → Advanced test syntax (safer and more feature-rich than `[ ... ]`).
+  - Supports regex matching: `[[ "$str" =~ ^[a-z]+$ ]]`
+  - Supports logical operators: `[[ -f file && -r file ]]`
+  - Quoting inside is more flexible: `[[ "$var" == "hello world" ]]` works without escaping.
+- `(( ... ))` → Arithmetic expansion.
+  - Example: `((var++))`, `((a = b * 5 + 3))`
+- `function myfunc { ... }` → Function keyword (POSIX uses `myfunc() { ... }`).
+- `<(cmd)` → Process substitution (used in pipelines).
+- `>&2` → Directly redirect output to `stderr`.
+- `declare -A myassoc` → Associative arrays (not available in POSIX `sh`).
+- `echo {1..10}` → Brace expansion for number and letter sequences.
+- `shopt -s extglob` → Enable extended globbing (e.g., `+(pattern)`, `!(pattern)`, `?(pattern)`, etc.).
+- `${var,,}` / `${var^^}` → String case conversion.
+  - Lowercase: `echo "${str,,}"`  
+  - Uppercase: `echo "${str^^}"`
 
-Process Substitution:
-<(cmd) / >(cmd)
+### 2. File Descriptors and Redirections
+- **File descriptors are numeric identifiers for input/output streams.**
+- **Common file descriptors:**
+  - `0` - Standard Input (stdin)
+  - `1` - Standard Output (stdout)
+  - `2` - Standard Error (stderr)
+- **Redirect stdout to a file:**
+  ```bash
+  command > file
+  ```
+- **Redirect stderr to a file:**
+  ```bash
+  command 2> file
+  ```
+- **Redirect both stdout and stderr:**
+  ```bash
+  command &> file
+  ```
+- **Use `/dev/null` to discard output:**
+  ```bash
+  command > /dev/null 2>&1
+  ```
+- **Special character devices:**
+  - `/dev/tty1` - Primary terminal interface
+  - `/dev/pts/*` - Pseudo-terminals for remote connections
+  - `/dev/null` - Discards all data written to it
+  - `/dev/zero` - Infinite stream of null bytes
 
-Regex Test:
-regex=^'lol'*
-[[ "$str" =~ $regex ]] && ... # regex is not quoated! Not portable.
-# Use a case condition for portability.
+### 3. Process Substitution
+- **Redirect command output to a file descriptor without using a temporary file**:
+  - Example: `diff <(sort file1) <(sort file2)`
+  - `<(cmd)` → Treats command output as a file.
+  - `>(cmd)` → Treats input as a file for a command.
+- **Example with `paste`**:
+  ```bash
+  paste <(cut -d, -f1 file) <(cut -d, -f2 file)
+  ```
+- **Named pipes (alternative to process substitution)**:
+  - Named pipes (FIFOs) allow communication between processes without writing to disk.
+  ```bash
+  mkfifo pipe
+  command1 > pipe &
+  command2 < pipe
+  ```
 
-Element Count:
-echo "$#" # Pos-param count
-echo "${#arr[@]}" # Array element count
-echo "${#str}" # String length count
+### 4. Arrays in Bash
+#### Indexed Arrays
+- **Declare an array**:
+  ```bash
+  arr=(apple banana cherry)
+  ```
+- **Access elements**:
+  ```bash
+  echo "${arr[0]}"  # apple
+  ```
+- **Loop through an array**:
+  ```bash
+  for item in "${arr[@]}"; do
+      echo "$item"
+  done
+  ```
+- **Get array length**:
+  ```bash
+  echo "${#arr[@]}"
+  ```
+- **Append elements**:
+  ```bash
+  arr+=(orange)
+  ```
+- **Remove an element**:
+  ```bash
+  unset "arr[1]"  # Removes banana
+  ```
+- **Slice an array**:
+  - Slicing extracts a portion of an array.
+  ```bash
+  echo "${arr[@]:1:2}"  # Start at index 1, take 2 elements
+  ```
 
-Accessing All Elements:
-echo "$@" # All pos-params
-echo "${arr[@]" # All array elements
+#### Associative Arrays
+- **Declare associative array**:
+  ```bash
+  declare -A colors
+  colors[red]="#FF0000"
+  colors[blue]="#0000FF"
+  ```
+- **Access values**:
+  ```bash
+  echo "${colors[red]}"  # #FF0000
+  ```
+- **Loop through associative array**:
+  - The following loop iterates over all keys in the associative array.
+  ```bash
+  for key in "${!colors[@]}"; do
+      echo "$key -> ${colors[$key]}"
+  done
+  ```
 
-PIDs:
-echo "$$" # PID
-declare -p BASHPID # PID
-echo "$!" # PID of job placed in the background
-echo "$PPID" # PPID
-Note: $$ is interpreted before execution. See: BASHPID.
+### 5. Arithmetic Operators
+- **Basic arithmetic**:
+  - The `$(( ))` syntax is used for arithmetic expansion.
+  ```bash
+  a=$((5 + 3))
+  echo "$a"  # 8
+  ```
+- **Comparison operators**:
+  ```bash
+  ((a < b))  # Less than
+  ((a > b))  # Greater than
+  ((a == b)) # Equal
+  ```
+- **Increment & decrement**:
+  ```bash
+  ((a++))  # Post-increment
+  ((--a))  # Pre-decrement
+  ```
 
-Increment / Decrement Integer:
-((++var)) / ((--var)) # not portable! 
-# sh version: var=$((var+1))
+### 6. String Operations
+- **Substring extraction**:
+  ```bash
+  str="green apple trees"
+  echo "${str:0:5}"  # Output: green
+  ```
+- **Replace first occurrence**:
+  ```bash
+  echo "${str/apple/orange}"  # green orange trees
+  ```
+- **Replace all occurrences**:
+  ```bash
+  echo "${str//apple/orange}"  # green orange trees
+  ```
 
-Command Grouping:
-{ cmd1; cmd2; cmd3; } # Code Block (same process)
-( cmd1; cmd2; cmd3; ) # Subshell (seperate process)  
+### 7. `set -e`, `set -u`, `set -o pipefail`
+- **Exit script on any error**:
+  ```bash
+  set -e
+  ```
+- **Exit on unset variables**:
+  ```bash
+  set -u
+  ```
+- **Ensure entire pipeline fails if any command fails**:
+  ```bash
+  set -o pipefail
+  ```
 
-Get Substring:
-echo "${str:0:5}" # Get substring starting at
-# index 0 and extending 5 characters
-echo "$str" | cut -b 1 # get Nth character of string
-
-Recursive Globbing:
-shopt -s globstar # enable recurive globbing
-ls ~/** # recursively search
-
-Here Strings:
-read var <<< "TEXT" # Doesn't create a subshell! 
-
-Special Variables:
-echo "$-" # indicates special shell options set 
-
-Use interactive programs in scripts:
-cat << EOF | fdisk /dev/sda
-o
-n
-p
-
-+200M
-...
-EOF
-
-Set locale to be default (resulting in English time and date):
-export LC_ALL=C
+### 8. `trap` Command
+- **Handle signals (e.g., `Ctrl+C`)**:
+  ```bash
+  trap 'echo "Script interrupted"; exit' SIGINT
+  ```
+- **Cleanup on exit**:
+  ```bash
+  trap 'rm -f /tmp/tempfile' EXIT
+  ```
