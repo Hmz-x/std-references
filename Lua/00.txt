@@ -42,3 +42,65 @@ function type gives the type name of any given value:
 > type(type)
 > type({})
 > type(type(X))
+
+nil = non-value = null
+nil is considered false value but not the same as boolean false
+
+false and nil are falsey.
+Everything else (numbers, strings, tables, etc.) is truthy, even 0 and "".
+
+logical operators: and, or, not
+
+> 4 and 5 --> 5
+Both 4 and 5 are truthy.
+and returns the last operand when all are truthy.
+
+> nil and 13 --> nil
+nil is falsey.
+and stops at the first falsey operand.
+
+> false and 13 --> false
+false is falsey.
+and returns the first falsey operand.
+
+> 0 or 5 --> 0
+0 is truthy in Lua (unlike some languages where it’s false).
+or returns the first truthy operand.
+
+> false or "hi" --> "hi"
+false is falsey.
+or moves on to the next operand.
+"hi" is truthy.
+
+> nil or false --> false
+First operand nil is falsey → move on.
+Second operand false is also falsey → return it.
+
+and: gives you the first falsey or the last truthy.
+or: gives you the first truthy or the last falsey.
+
+A useful Lua idiom is x = x or v, which is equivalent to
+if not x then x = v end
+
+The not operator always gives a Boolean value:
+> not nil
+> not false
+> not 0
+> not not 1
+> not not nil
+
+The -e option allows us to enter code directly into the command line, like here:
+% lua -e "print(math.sin(12))" --> -0.53657291800043
+
+The -l option loads a library
+% lua -i -llib -e "x = 10" -- load library "lib", run chunk, enter interactive mode
+
+A script can retrieve its arguments through the predefined global variable arg.
+% lua -e "sin=math.sin" script a b
+The interpreter collects the arguments as follows:
+arg[-3] = "lua"
+arg[-2] = "-e"
+arg[-1] = "sin=math.sin"
+arg[0] = "script"
+arg[1] = "a"
+arg[2] = "b"
