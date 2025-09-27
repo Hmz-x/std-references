@@ -1,0 +1,44 @@
+Intro to Lua
+
+print("hello world")
+print(12)
+
+$ lua hello.lua
+
+-- comment
+
+We call each piece of code that Lua executes, such as a file or a single line in interactive mode, a chunk.
+A chunk is simply a sequence of commands (or statements).
+
+> os.exit() -- exit interactive mode
+
+We can use the -i option to instruct Lua to start an interactive session after running a given chunk:
+$ lua -i prog
+
+load library:
+dofile("lib1.lua")
+
+--[[
+print("commented out")
+]]
+
+
+--[[
+print("commented out")
+--]]
+
+---[[
+print("not commented out")
+--]]
+
+There are eight basic types in Lua: nil, Boolean, number, string, userdata, function, thread, and table
+function type gives the type name of any given value:
+> type(nil)
+> type(true)
+> type(10.4 * 3)
+> type("Hello world")
+> type(io.stdin)
+> type(print)
+> type(type)
+> type({})
+> type(type(X))

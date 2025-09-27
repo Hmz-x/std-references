@@ -1,10 +1,8 @@
 Some Key Benefits of Redhat:
--Monitored updates and patches that have gone through a thorough testing
-procedure
+-Monitored updates and patches that have gone through a thorough testing procedure
 -Different levels of support and help, depending on which type of subscription you have purchased
 -A certified operating system that is guaranteed to run and to be supported on specific hardware models
--A certified platform for running enterprise applications such as SAP 
-middleware, Oracle Database, and many more
+-A certified platform for running enterprise applications such as SAP middleware, Oracle Database, and many more
 -Access to the Red Hat Customer Portal at https://access.redhat.com, where
 you can find much detailed documentation that is available to customers only
 
