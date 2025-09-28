@@ -1,0 +1,9 @@
+Numerals with a decimal point or an exponent are considered floats; otherwise, they are treated as integers.
+Both integer and float values have type "number":
+> type(3)
+> type(3.5)
+> type(3.0)
+
+> math.type(3) --> integer
+> math.type(3.0) --> float
+
