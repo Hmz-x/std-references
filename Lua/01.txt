@@ -1,0 +1,71 @@
+Numerals with a decimal point or an exponent are considered floats; otherwise, they are treated as integers.
+Both integer and float values have type "number":
+> type(3)
+> type(3.5)
+> type(3.0)
+
+> math.type(3) --> integer
+> math.type(3.0) --> float
+
+Moreover, integers and floats with the same value compare as equal in Lua
+> 1 == 1.0 --> true
+> -3 == -3.0 --> true
+> 0.2e3 == 200 --> true
+
+to distinguish between floats and integers, we can use math.type:
+> math.type(3) --> integer
+> math.type(3.0) --> float
+
+Lua provides the following relational operators:
+< > <= = == ~=
+All these operators always produce a Boolean value.
+
+The == operator tests for equality; the ~= operator is the negation of equality (aka not equals). We can apply these opera-
+tors to any two values. If the values have different types, Lua considers them not equal. Otherwise, Lua
+compares them according to their types.
+
+math.max(...)
+Takes one or more numbers.
+Returns the largest.
+
+math.min(...)
+Takes one or more numbers.
+Returns the smallest.
+
+math.randomseed(x)   -- set seed
+math.randomseed(os.time())
+
+math.random()        -- get a random number (accepts 1 or 2 arguments)
+
+Strings in Lua are immutable values. We cannot change a character inside a string, as we can in C; instead,
+we create a new string with the desired modifications. But, variables are mutable references.
+Strings in Lua are subject to automatic memory management, like all other Lua objects (tables, functions,
+etc.).
+
+We can get the length of a string using the length operator (denoted by #):
+print(#mystr)
+
+We can concatenate two strings with the concatenation operator ..
+print("My name is " .. myname)
+The concatenation operator always creates a new string, without any modification to its operands
+
+a = "a line"
+b = 'another line'
+single or double matching quotes are equivalent.
+
+long strings
+page = [[
+<html>
+<head>
+  <title>An HTML Page</title>
+</head>
+<body>
+  <a href="http://www.lua.org">Lua</a>
+</body>
+</html>
+]]
+
+Lua provides automatic conversions between numbers and strings at run time. Any numeric operation
+applied to a string tries to convert the string to a number.
+Conversely, whenever Lua finds a number where it expects a string, it converts the number to a string:
+print(10 .. 20) --> 1020
