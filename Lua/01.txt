@@ -69,3 +69,19 @@ Lua provides automatic conversions between numbers and strings at run time. Any 
 applied to a string tries to convert the string to a number.
 Conversely, whenever Lua finds a number where it expects a string, it converts the number to a string:
 print(10 .. 20) --> 1020
+
+To convert a string to a number explicitly, we can use the function tonumber, which returns nil if the
+string does not denote a proper number.
+
+> tonumber(" -3 ")
+> tonumber(" 10e4 ")
+> tonumber("10e") -- nil
+> tonumber("0x1.3p-4")
+
+To convert a number to a string, we can call the function tostring:
+print(tostring(10) == "10") --> true
+
+Get string length
+string.len(s) -- equivalent to #s
+
+string.rep(s, n) returns the string s repeated n times
